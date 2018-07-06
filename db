@@ -1,0 +1,49 @@
+TABLES ->
+
+-PROJETS:
+	id
+	name
+	image
+	content
+	github	
+	live
+	techno
+	date
+
+-SKILLS:
+	id
+	name
+	image
+	genre
+
+-RESUME:
+	id
+	title
+	company
+	year
+	content
+	genre
+
+-MESSAGE:
+	id
+	email	
+	message
+
+	
+personal:
+-
+
+software:
+-Photoshop
+-Git
+-Composer
+-
+
+code:
+-HTML5
+-CSS3
+-JavaScript
+-PHP
+-MYSQL
+-Symfony
+-

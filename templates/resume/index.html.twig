@@ -1,0 +1,39 @@
+{% extends 'admin/base-admin.html.twig' %}
+
+{% block title %}{% endblock %}
+
+	{% block body %}
+
+
+		<div class="example-wrapper">
+			<h1>Resume</h1>
+
+
+			<table>
+				<tr>
+					<th>id</th>
+					<th>title</th>
+					<th>company</th>
+					<th>year</th>
+					<th>content</th>
+					<th>genre</th>
+					<th>delete</th>
+				</tr>
+				{% for resume in resumes %}
+					
+					<tr>
+						<td>{{ resume.id }}</td>
+						<td>{{ resume.title }}</td>
+						<td>{{ resume.company }}</td>
+						<td>{{ resume.year }}</td>
+						<td>{{ resume.content }}</td>
+						<td>{{ resume.genre }}</td>
+						<td><a href="{{ 'resume/delete' }}/{{ resume.id }}">DELETE</a></td>
+					</tr>
+
+				{% endfor %}
+			</table>
+			<a href="{{ 'add/' }}" role="button">Add a resume</a>
+
+		</div>
+	{% endblock %}
