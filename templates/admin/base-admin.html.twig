@@ -1,34 +1,40 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('build/app.css') }}">
         <style>
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
 
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
 
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-</style>{% endblock %}
-    </head>
-    <body>
-        <a href="{{ 'admin/' }}">HOME</a>
-        <a href="{{ 'skills/' }}">SKILLS</a>
-        <a href="{{ 'projects/' }}">PROJECTS</a>
-        <a href="{{ 'message/' }}">MESSAGE</a>
-        <a href="{{ 'resume/' }}">RESUME</a>
-        {% block body %}{% endblock %}
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>{% endblock %}
+</head>
+<body>
+{{ dump(entities)}}
+
+    <ul>
+        {% for entity in entities |sort %}
+            <li><a href="admin/{{ entity |lower }}">{{ entity }}</li></a>
+        {% endfor %}
+    </ul>
+
+
+
+    {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
-    </body>
-</html>
+        </body> 
+        </html>

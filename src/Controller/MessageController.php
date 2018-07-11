@@ -2,78 +2,90 @@
 
 namespace App\Controller;
 
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Entity\Message;
-use Symfony\Component\HttpFoundation\Response;
+use App\Form\MessageType;
+use App\Repository\MessageRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/admin/messages")
+ */
 class MessageController extends Controller
 {
-   	/**
-     * @Route("/message", name="message")
-     */
-   public function index()
-   {
-   	$repository = $this->getDoctrine()->getRepository(Message::class);
-   	$messages = $repository->findAll();
-   	return $this->render('message/index.html.twig', [
-   		'messages' => $messages,
-   	]);
-   }
-
     /**
-     * @Route("/add", name="addMessage")
+     * @Route("/", name="message_index", methods="GET")
      */
-    public function addMessage(Request $request){
-
-    	 // just setup a fresh $task object (remove the dummy data)
-    	$message = new Resume();
-
-    	$form = $this->createFormBuilder($message)
-    	->add('email', TextType::class)
-    	->add('message', TextType::class)
-    	->add('save', SubmitType::class, array('label' => 'Add Message'))
-    	->getForm();
-
-    	$form->handleRequest($request);
-
-    	if ($form->isSubmitted() && $form->isValid()) {
-        // $form->getData() holds the submitted values
-        // but, the original `$task` variable has also been updated
-    		$message = $form->getData();
-
-        // ... perform some action, such as saving the task to the database
-        // for example, if Task is a Doctrine entity, save it!
-    		$entityManager = $this->getDoctrine()->getManager();
-    		$entityManager->persist($message);
-    		$entityManager->flush();
-
-    		return $this->redirectToRoute('message');
-    	}
-
-    	return $this->render('message/add.html.twig', array(
-    		'form' => $form->createView(),
-    	));
-
+    public function index(MessageRepository $messageRepository): Response
+    {
+        return $this->render('message/index.html.twig', ['messages' => $messageRepository->findAll()]);
     }
 
     /**
-     * @Route("/delete/{id}", name="deleteSkill")
+     * @Route("/new", name="message_new", methods="GET|POST")
      */
-    public function deleteMessage($id){
+    public function new(Request $request): Response
+    {
+        $message = new Message();
+        $message->setCreatedAt(new \DateTime('now'));
+        $form = $this->createForm(MessageType::class, $message);
+        $form->handleRequest($request);
 
-    	$repository = $this->getDoctrine()->getRepository(Message::class);
-    	$message = $repository->find($id);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($message);
+            $em->flush();
 
-    	$entityManager = $this->getDoctrine()->getManager();
-    	$entityManager->remove($message);
-    	$entityManager->flush();
+            return $this->redirectToRoute('message_index');
+        }
 
-    	return $this->redirectToRoute('message');
+        return $this->render('message/new.html.twig', [
+            'message' => $message,
+            'form' => $form->createView(),
+        ]);
+    }
 
+    /**
+     * @Route("/{id}", name="message_show", methods="GET")
+     */
+    public function show(Message $message): Response
+    {
+        return $this->render('message/show.html.twig', ['message' => $message]);
+    }
+
+    /**
+     * @Route("/{id}/edit", name="message_edit", methods="GET|POST")
+     */
+    public function edit(Request $request, Message $message): Response
+    {
+        $form = $this->createForm(MessageType::class, $message);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('message_edit', ['id' => $message->getId()]);
+        }
+
+        return $this->render('message/edit.html.twig', [
+            'message' => $message,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="message_delete", methods="DELETE")
+     */
+    public function delete(Request $request, Message $message): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$message->getId(), $request->request->get('_token'))) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($message);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('message_index');
     }
 }

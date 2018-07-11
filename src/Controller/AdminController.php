@@ -8,6 +8,7 @@ use App\Entity\Skills;
 use App\Entity\Projects;
 use App\Entity\Resume;
 use App\Entity\Message;
+use Doctrine\ORM\EntityManagerInterface;
 
 class AdminController extends Controller
 {
@@ -17,8 +18,13 @@ class AdminController extends Controller
     public function index()
     {
 
-        return $this->render('admin/base-admin.html.twig', [
-            'controller_name' => 'AdminController',
-        ]);
+    	$entities = ['Messages', 'Projects', 'Resume', 'Skills'];
+
+
+    	return $this->render('admin/base-admin.html.twig', [
+    		'controller_name' => 'AdminController',
+    		'entities' => $entities
+    	]);
     }
+
 }

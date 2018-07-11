@@ -2,81 +2,89 @@
 
 namespace App\Controller;
 
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Entity\Resume;
-use Symfony\Component\HttpFoundation\Response;
+use App\Form\ResumeType;
+use App\Repository\ResumeRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/admin/resume")
+ */
 class ResumeController extends Controller
 {
-        /**
-     * @Route("/resume", name="resume")
+    /**
+     * @Route("/", name="resume_index", methods="GET")
      */
-    public function index()
+    public function index(ResumeRepository $resumeRepository): Response
     {
-    	$repository = $this->getDoctrine()->getRepository(Resume::class);
-    	$resumes = $repository->findAll();
-    	return $this->render('resume/index.html.twig', [
-    		'resumes' => $resumes,
-    	]);
+        return $this->render('resume/index.html.twig', ['resumes' => $resumeRepository->findAll()]);
     }
 
     /**
-     * @Route("/add", name="addResume")
+     * @Route("/new", name="resume_new", methods="GET|POST")
      */
-    public function addResume(Request $request){
+    public function new(Request $request): Response
+    {
+        $resume = new Resume();
+        $form = $this->createForm(ResumeType::class, $resume);
+        $form->handleRequest($request);
 
-    	 // just setup a fresh $task object (remove the dummy data)
-    	$resume = new Resume();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($resume);
+            $em->flush();
 
-    	$form = $this->createFormBuilder($resume)
-    	->add('title', TextType::class)
-    	->add('company', TextType::class)
-    	->add('year', TextType::class)
-    	->add('content', TextType::class)
-    	->add('genre', TextType::class)
-    	->add('save', SubmitType::class, array('label' => 'Add Resume'))
-    	->getForm();
+            return $this->redirectToRoute('resume_index');
+        }
 
-    	$form->handleRequest($request);
-
-    	if ($form->isSubmitted() && $form->isValid()) {
-        // $form->getData() holds the submitted values
-        // but, the original `$task` variable has also been updated
-    		$resume = $form->getData();
-
-        // ... perform some action, such as saving the task to the database
-        // for example, if Task is a Doctrine entity, save it!
-    		$entityManager = $this->getDoctrine()->getManager();
-    		$entityManager->persist($resume);
-    		$entityManager->flush();
-
-    		return $this->redirectToRoute('resume');
-    	}
-
-    	return $this->render('resume/add.html.twig', array(
-    		'form' => $form->createView(),
-    	));
-
+        return $this->render('resume/new.html.twig', [
+            'resume' => $resume,
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
-     * @Route("/delete/{id}", name="deleteSkill")
+     * @Route("/{id}", name="resume_show", methods="GET")
      */
-    public function deleteResume($id){
+    public function show(Resume $resume): Response
+    {
+        return $this->render('resume/show.html.twig', ['resume' => $resume]);
+    }
 
-    	$repository = $this->getDoctrine()->getRepository(Resume::class);
-    	$resume = $repository->find($id);
+    /**
+     * @Route("/{id}/edit", name="resume_edit", methods="GET|POST")
+     */
+    public function edit(Request $request, Resume $resume): Response
+    {
+        $form = $this->createForm(ResumeType::class, $resume);
+        $form->handleRequest($request);
 
-    	$entityManager = $this->getDoctrine()->getManager();
-    	$entityManager->remove($resume);
-    	$entityManager->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
 
-    	return $this->redirectToRoute('resume');
+            return $this->redirectToRoute('resume_edit', ['id' => $resume->getId()]);
+        }
 
+        return $this->render('resume/edit.html.twig', [
+            'resume' => $resume,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="resume_delete", methods="DELETE")
+     */
+    public function delete(Request $request, Resume $resume): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$resume->getId(), $request->request->get('_token'))) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($resume);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('resume_index');
     }
 }

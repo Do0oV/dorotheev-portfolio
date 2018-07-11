@@ -1,43 +1,47 @@
-{% extends 'admin/base-admin.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %}Projects index{% endblock %}
 
-	{% block body %}
+{% block body %}
+    <h1>Projects index</h1>
 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Content</th>
+                <th>Github</th>
+                <th>Live</th>
+                <th>Techno</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for project in projects %}
+            <tr>
+                <td>{{ project.id }}</td>
+                <td>{{ project.name }}</td>
+                <td>{{ project.image }}</td>
+                <td>{{ project.content }}</td>
+                <td>{{ project.github }}</td>
+                <td>{{ project.live }}</td>
+                <td>{{ project.techno }}</td>
+                <td>{{ project.date }}</td>
+                <td>
+                    <a href="{{ path('projects_show', {'id': project.id}) }}">show</a>
+                    <a href="{{ path('projects_edit', {'id': project.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-		<div class="example-wrapper">
-			<h1>Projects</h1>
-
-
-			<table>
-				<tr>
-					<th>id</th>
-					<th>name</th>
-					<th>image</th>
-					<th>content</th>
-					<th>github</th>
-					<th>live</th>
-					<th>techno</th>
-					<th>date</th>
-					<th>delete</th>
-				</tr>
-				{% for project in projects %}
-					
-					<tr>
-						<td>{{ project.id }}</td>
-						<td>{{ project.name }}</td>
-						<td>{{ project.image }}</td>
-						<td>{{ project.content }}</td>
-						<td>{{ project.github }}</td>
-						<td>{{ project.live }}</td>
-						<td>{{ project.techno }}</td>
-						<td>{{ project.date }}</td>
-						<td><a href="{{ 'project/delete' }}/{{ project.id }}">DELETE</a></td>
-					</tr>
-
-				{% endfor %}
-			</table>
-			<a href="{{ 'add/' }}" role="button">Add a project</a>
-
-		</div>
-	{% endblock %}
+    <a href="{{ path('projects_new') }}">Create new</a>
+{% endblock %}

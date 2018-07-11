@@ -2,82 +2,89 @@
 
 namespace App\Controller;
 
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Entity\Skills;
-use Symfony\Component\HttpFoundation\Response;
+use App\Form\SkillsType;
+use App\Repository\SkillsRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
-
-
+/**
+ * @Route("/admin/skills")
+ */
 class SkillsController extends Controller
 {
     /**
-     * @Route("/skills", name="skills")
+     * @Route("/", name="skills_index", methods="GET")
      */
-    public function index()
+    public function index(SkillsRepository $skillsRepository): Response
     {
-    	$repository = $this->getDoctrine()->getRepository(Skills::class);
-    	$skills = $repository->findAll();
-    	return $this->render('skills/index.html.twig', [
-    		'skills' => $skills,
-    	]);
+        return $this->render('skills/index.html.twig', ['skills' => $skillsRepository->findAll()]);
     }
 
     /**
-     * @Route("/add", name="addSkill")
+     * @Route("/new", name="skills_new", methods="GET|POST")
      */
-    public function addSkill(Request $request){
+    public function new(Request $request): Response
+    {
+        $skill = new Skills();
+        $form = $this->createForm(SkillsType::class, $skill);
+        $form->handleRequest($request);
 
-    	 // just setup a fresh $task object (remove the dummy data)
-    	$skill = new Skills();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($skill);
+            $em->flush();
 
-    	$form = $this->createFormBuilder($skill)
-    	->add('name', TextType::class)
-    	->add('image', TextType::class)
-    	->add('genre', TextType::class)
-    	->add('save', SubmitType::class, array('label' => 'Add Skill'))
-    	->getForm();
+            return $this->redirectToRoute('skills_index');
+        }
 
-    	$form->handleRequest($request);
-
-    	if ($form->isSubmitted() && $form->isValid()) {
-        // $form->getData() holds the submitted values
-        // but, the original `$task` variable has also been updated
-    		$skill = $form->getData();
-
-        // ... perform some action, such as saving the task to the database
-        // for example, if Task is a Doctrine entity, save it!
-    		$entityManager = $this->getDoctrine()->getManager();
-    		$entityManager->persist($skill);
-    		$entityManager->flush();
-
-    		return $this->redirectToRoute('skills');
-    	}
-
-    	return $this->render('skills/add.html.twig', array(
-    		'form' => $form->createView(),
-    	));
-
+        return $this->render('skills/new.html.twig', [
+            'skill' => $skill,
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
-     * @Route("/delete/{id}", name="deleteSkill")
+     * @Route("/{id}", name="skills_show", methods="GET")
      */
-    public function deleteSkill($id){
-
-    	$repository = $this->getDoctrine()->getRepository(Skills::class);
-    	$skill = $repository->find($id);
-
-    	$entityManager = $this->getDoctrine()->getManager();
-    	$entityManager->remove($skill);
-    	$entityManager->flush();
-
-    	return $this->redirectToRoute('skills');
-
+    public function show(Skills $skill): Response
+    {
+        return $this->render('skills/show.html.twig', ['skill' => $skill]);
     }
-    
+
+    /**
+     * @Route("/{id}/edit", name="skills_edit", methods="GET|POST")
+     */
+    public function edit(Request $request, Skills $skill): Response
+    {
+        $form = $this->createForm(SkillsType::class, $skill);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('skills_edit', ['id' => $skill->getId()]);
+        }
+
+        return $this->render('skills/edit.html.twig', [
+            'skill' => $skill,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="skills_delete", methods="DELETE")
+     */
+    public function delete(Request $request, Skills $skill): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$skill->getId(), $request->request->get('_token'))) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($skill);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('skills_index');
+    }
 }

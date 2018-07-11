@@ -1,35 +1,39 @@
-{% extends 'admin/base-admin.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %}Skills index{% endblock %}
 
-	{% block body %}
+{% block body %}
+    <h1>Skills index</h1>
 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Genre</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for skill in skills %}
+            <tr>
+                <td>{{ skill.id }}</td>
+                <td>{{ skill.name }}</td>
+                <td>{{ skill.image }}</td>
+                <td>{{ skill.genre }}</td>
+                <td>
+                    <a href="{{ path('skills_show', {'id': skill.id}) }}">show</a>
+                    <a href="{{ path('skills_edit', {'id': skill.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-		<div class="example-wrapper">
-			<h1>Skills</h1>
-
-
-			<table>
-				<tr>
-					<th>id</th>
-					<th>name</th>
-					<th>image</th>
-					<th>genre</th>
-					<th>delete</th>
-				</tr>
-				{% for skill in skills %}
-					
-					<tr>
-						<td>{{ skill.id }}</td>
-						<td>{{ skill.name }}</td>
-						<td>{{ skill.image }}</td>
-						<td>{{ skill.genre }}</td>
-						<td><a href="{{ 'skills/delete' }}/{{ skill.id }}">DELETE</a></td>
-					</tr>
-
-				{% endfor %}
-			</table>
-			<a href="{{ 'add/' }}" role="button">Add a skill</a>
-
-		</div>
-	{% endblock %}
+    <a href="{{ path('skills_new') }}">Create new</a>
+{% endblock %}

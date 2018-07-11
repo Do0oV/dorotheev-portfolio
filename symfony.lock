@@ -89,6 +89,9 @@
             "ref": "aaddfdf43cdecd4cf91f992052d76c2cadc04543"
         }
     },
+    "symfony/asset": {
+        "version": "v4.1.1"
+    },
     "symfony/cache": {
         "version": "v4.1.1"
     },
@@ -202,6 +205,12 @@
             "version": "4.0",
             "ref": "cda8b550123383d25827705d05a42acf6819fe4e"
         }
+    },
+    "symfony/security-core": {
+        "version": "v4.1.1"
+    },
+    "symfony/security-csrf": {
+        "version": "v4.1.1"
     },
     "symfony/stopwatch": {
         "version": "v4.1.1"

@@ -2,82 +2,89 @@
 
 namespace App\Controller;
 
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Entity\Projects;
-use Symfony\Component\HttpFoundation\Response;
+use App\Form\ProjectsType;
+use App\Repository\ProjectsRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/admin/projects")
+ */
 class ProjectsController extends Controller
 {
     /**
-     * @Route("/projects", name="projects")
+     * @Route("/", name="projects_index", methods="GET")
      */
-    public function index()
+    public function index(ProjectsRepository $projectsRepository): Response
     {
-    	$repository = $this->getDoctrine()->getRepository(Projects::class);
-    	$projects = $repository->findAll();
-    	return $this->render('projects/index.html.twig', [
-    		'projects' => $projects,
-    	]);
-    }
-    /**
-     * @Route("/add", name="addProject")
-     */
-    public function addProject(Request $request){
-
-    	 // just setup a fresh $task object (remove the dummy data)
-    	$project = new Projects();
-
-    	$form = $this->createFormBuilder($project)
-    	->add('name', TextType::class)
-    	->add('image', TextType::class)
-    	->add('content', TextType::class)
-    	->add('github', TextType::class)
-    	->add('live', TextType::class)
-    	->add('techno', TextType::class)
-    	->add('date', TextType::class)
-    	->add('save', SubmitType::class, array('label' => 'Add Project'))
-    	->getForm();
-
-    	$form->handleRequest($request);
-
-    	if ($form->isSubmitted() && $form->isValid()) {
-        // $form->getData() holds the submitted values
-        // but, the original `$task` variable has also been updated
-    		$project = $form->getData();
-
-        // ... perform some action, such as saving the task to the database
-        // for example, if Task is a Doctrine entity, save it!
-    		$entityManager = $this->getDoctrine()->getManager();
-    		$entityManager->persist($project);
-    		$entityManager->flush();
-
-    		return $this->redirectToRoute('projects');
-    	}
-
-    	return $this->render('projects/add.html.twig', array(
-    		'form' => $form->createView(),
-    	));
-
+        return $this->render('projects/index.html.twig', ['projects' => $projectsRepository->findAll()]);
     }
 
     /**
-     * @Route("/delete/{id}", name="deleteProject")
+     * @Route("/new", name="projects_new", methods="GET|POST")
      */
-    public function deleteProject($id){
+    public function new(Request $request): Response
+    {
+        $project = new Projects();
+        $form = $this->createForm(ProjectsType::class, $project);
+        $form->handleRequest($request);
 
-    	$repository = $this->getDoctrine()->getRepository(Projects::class);
-    	$project = $repository->find($id);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($project);
+            $em->flush();
 
-    	$entityManager = $this->getDoctrine()->getManager();
-    	$entityManager->remove($project);
-    	$entityManager->flush();
+            return $this->redirectToRoute('projects_index');
+        }
 
-    	return $this->redirectToRoute('projects');
+        return $this->render('projects/new.html.twig', [
+            'project' => $project,
+            'form' => $form->createView(),
+        ]);
+    }
 
+    /**
+     * @Route("/{id}", name="projects_show", methods="GET")
+     */
+    public function show(Projects $project): Response
+    {
+        return $this->render('projects/show.html.twig', ['project' => $project]);
+    }
+
+    /**
+     * @Route("/{id}/edit", name="projects_edit", methods="GET|POST")
+     */
+    public function edit(Request $request, Projects $project): Response
+    {
+        $form = $this->createForm(ProjectsType::class, $project);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('projects_edit', ['id' => $project->getId()]);
+        }
+
+        return $this->render('projects/edit.html.twig', [
+            'project' => $project,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="projects_delete", methods="DELETE")
+     */
+    public function delete(Request $request, Projects $project): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$project->getId(), $request->request->get('_token'))) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($project);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('projects_index');
     }
 }
