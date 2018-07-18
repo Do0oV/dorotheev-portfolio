@@ -25,10 +25,11 @@
 </head>
 <body>
 {{ dump(entities)}}
-
+<br>
+<a href="/">Main site</a>
     <ul>
         {% for entity in entities |sort %}
-            <li><a href="admin/{{ entity |lower }}">{{ entity }}</li></a>
+            <li><a href="admin/{{ entity |lower }}">{{ entity }}</a></li>
         {% endfor %}
     </ul>
 

@@ -20,7 +20,6 @@ class AdminController extends Controller
 
     	$entities = ['Messages', 'Projects', 'Resume', 'Skills'];
 
-
     	return $this->render('admin/base-admin.html.twig', [
     		'controller_name' => 'AdminController',
     		'entities' => $entities
