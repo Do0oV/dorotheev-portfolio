@@ -19,6 +19,7 @@ class ProjectsType extends AbstractType
             ->add('live')
             ->add('techno')
             ->add('date')
+            ->add('display')
         ;
     }
 

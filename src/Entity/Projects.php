@@ -51,6 +51,11 @@ class Projects
      */
     private $date;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $display;
+
     public function getId()
     {
         return $this->id;
@@ -136,6 +141,18 @@ class Projects
     public function setDate(string $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getDisplay(): ?bool
+    {
+        return $this->display;
+    }
+
+    public function setDisplay(bool $display): self
+    {
+        $this->display = $display;
 
         return $this;
     }

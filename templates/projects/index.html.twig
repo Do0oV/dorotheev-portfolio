@@ -17,6 +17,7 @@
                 <th>Live</th>
                 <th>Techno</th>
                 <th>Date</th>
+                <th>Display</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -31,6 +32,7 @@
                 <td>{{ project.live }}</td>
                 <td>{{ project.techno }}</td>
                 <td>{{ project.date }}</td>
+                <td>{{ project.display ? 'Yes' : 'No' }}</td>
                 <td>
                     <a href="{{ path('projects_show', {'id': project.id}) }}">show</a>
                     <a href="{{ path('projects_edit', {'id': project.id}) }}">edit</a>
