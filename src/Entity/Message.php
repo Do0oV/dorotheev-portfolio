@@ -31,6 +31,12 @@ class Message
      */
     private $created_at;
 
+    public function __construct()
+    {
+        $datetime = new \DateTime();
+        $this->setCreatedAt($datetime);
+    }
+
 
     public function getId()
     {

@@ -26,7 +26,7 @@ class RegistrationController extends Controller {
             $user->setPassword($password);
             //on active par défaut
             $user->setIsActive(true);
-            $user->addRole("ROLE_USER");
+            $user->setRoles(["ROLE_ADMIN"]);
             // 4) save the User!
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);

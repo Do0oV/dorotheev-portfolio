@@ -1,0 +1,15 @@
+<h3>New contact message</h3>
+
+
+Hi {{ message.email }} ! You're successfully registered.
+<br>
+
+message : {{ message.message }}
+<br>
+{# example, assuming you have a route named "login" #}
+To login, go to: <a href="{{ url('login') }}">link example</a>.
+
+Thanks!
+
+{# Makes an absolute URL to the /images/logo.png file #}
+<img src="{{ absolute_url(asset('images/logo.png')) }}">

@@ -37,21 +37,13 @@ class ProjectsController extends Controller
             $em->persist($project);
             $em->flush();
 
-            return $this->redirectToRoute('projects_index');
+            return $this->redirectToRoute('admin');
         }
 
         return $this->render('projects/new.html.twig', [
             'project' => $project,
             'form' => $form->createView(),
         ]);
-    }
-
-    /**
-     * @Route("/{id}", name="projects_show", methods="GET")
-     */
-    public function show(Projects $project): Response
-    {
-        return $this->render('projects/show.html.twig', ['project' => $project]);
     }
 
     /**
@@ -65,7 +57,7 @@ class ProjectsController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('projects_edit', ['id' => $project->getId()]);
+            return $this->redirectToRoute('admin');
         }
 
         return $this->render('projects/edit.html.twig', [
@@ -85,6 +77,6 @@ class ProjectsController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('projects_index');
+        return $this->redirectToRoute('admin');
     }
 }

@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="main">
 
     {% if error %}
+
         <div class="alert alert-danger">
             <ul class="list-unstyled mb-0">
                 <li><span class="initialism form-error-icon badge badge-danger">Error</span> 
@@ -10,6 +12,29 @@
                 </li>
             </ul>
         </div>
+
     {% endif %}
-    {{form(form)}}
+
+    <form class="login-form" action="{{ path('login') }}" method="POST">
+        <p class="login-text">
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-lock fa-stack-1x"></i>
+          </span>
+      </p>
+      <input class="login-username" autofocus="true" required="true" type="text" placeholder="Username" name="_username" value="{{ last_username }}">
+      <input class="login-password" required="true" type="password" name="_password" placeholder="Password">
+      <span class="login-remember">
+      <label for="remember_me">Se souvenir de moi</label>
+      <input type="checkbox" id="remember_me" name="_remember_me">
+      </span>
+      <input class="login-submit" type="submit" value="Connexion">
+      <input type="hidden" name="_target_path" value="/admin/">
+  </form>
+  <div class="underlay-photo"></div>
+  <div class="underlay-black"></div> 
+
+
+</div>
+
 {% endblock %}

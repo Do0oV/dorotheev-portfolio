@@ -1,7 +1,25 @@
 {% extends 'admin/base-admin.html.twig' %}
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
+{% block title %}{% endblock %}
 
-{% block body %}
-TEST
-{% endblock %}
+	{% block body %}
+
+		<div class="wrapper">
+
+			{# MESSAGES #}
+			{{ include('message/index.html.twig') }}
+
+			{# PROJECTS #}
+			{{ include('projects/index.html.twig') }}
+
+
+			{# RESUME #}
+			{{ include('resume/index.html.twig') }}
+
+			{# SKILLS #}
+			{{ include('skills/index.html.twig') }}
+
+		</div>
+
+
+	{% endblock %}

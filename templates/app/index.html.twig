@@ -10,10 +10,13 @@
 
 <div class="example-wrapper">
 
-<ul>
-{% for project in projects %}
-	 <li><a href="{{ path('show-project', {'id': project.id}) }}">{{ project.name }}</a></li>
-{% endfor %}
-</ul>
+	<ul>
+		{% for project in projects %}
+			<li><a href="{{ path('show-project', {'id': project.id}) }}">{{ project.name }}</a></li>
+		{% endfor %}
+	</ul>
 </div>
+
+{{ include('contact/index.html.twig', {'button_label': 'Send'}) }}
+
 {% endblock %}

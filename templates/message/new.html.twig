@@ -2,10 +2,22 @@
 
 {% block title %}New Message{% endblock %}
 
-{% block body %}
-    <h1>Create new Message</h1>
+	{% block body %}
+		<div class="edit container">
+			<h2>New Message</h2>
+			<a href="{{ path('admin') }}"><button class="btn btn-primary btn-sm">BACK</button></a>
+			{{ form_start(form) }}
 
-    {{ include('message/_form.html.twig') }}
+			{{ form_errors(form) }}
 
-    <a href="{{ path('message_index') }}">back to list</a>
-{% endblock %}
+			{{ form_row(form.email) }}
+			{{ form_row(form.message) }}
+
+			<button class="btn btn-warning btn-sm">{{ button_label|default('save') }}</button>
+
+			{{ form_end(form) }}
+			
+		</div>
+
+
+	{% endblock %}

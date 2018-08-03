@@ -2,10 +2,23 @@
 
 {% block title %}New Resume{% endblock %}
 
-{% block body %}
-    <h1>Create new Resume</h1>
+	{% block body %}
+		<div class="edit container">
+			<h2>New Resume</h2>
+			<a href="{{ path('admin') }}"><button class="btn btn-primary btn-sm">BACK</button></a>
+			{{ form_start(form) }}
 
-    {{ include('resume/_form.html.twig') }}
+			{{ form_errors(form) }}
+			
+			{{ form_row(form.title) }}
+			{{ form_row(form.company) }}
+			{{ form_row(form.year) }}
+			{{ form_row(form.content) }}
+			{{ form_row(form.genre) }}
 
-    <a href="{{ path('resume_index') }}">back to list</a>
-{% endblock %}
+			<button class="btn btn-warning btn-sm">{{ button_label|default('save') }}</button>
+
+			{{ form_end(form) }}
+		</div>
+
+	{% endblock %}

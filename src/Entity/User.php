@@ -29,7 +29,6 @@ class User implements UserInterface, \Serializable {
     private $email;
 
     /**
-     * @Assert\NotBlank()
      * @Assert\Length(max=250)
      */
     private $plainPassword;
@@ -48,12 +47,13 @@ class User implements UserInterface, \Serializable {
     private $isActive;
 
     /**
-     * @ORM\Column(name="roles", type="array")
+     * @ORM\Column(type="string", length=255)
      */
-    private $roles = array();
+    private $roles;
 
     public function __construct() {
         $this->isActive = true;
+        $this->roles = 'ROLE_ADMIN';
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
     }
@@ -72,19 +72,16 @@ class User implements UserInterface, \Serializable {
         return $this->password;
     }
 
-    function setPassword($password) {
+    public function setPassword($password) {
         $this->password = $password;
     }
 
     public function getRoles() {
-        if (empty($this->roles)) {
-            return ['ROLE_USER'];
-        }
-        return $this->roles;
+        return explode('|', $this->roles);
     }
 
-    function addRole($role) {
-        $this->roles[] = $role;
+    public function setRoles(array $roles) {
+        $this->roles = implode('|', $roles);
     }
 
     public function eraseCredentials() {
@@ -97,7 +94,7 @@ class User implements UserInterface, \Serializable {
             $this->id,
             $this->email,
             $this->password,
-            $this->isActive,
+            // $this->isActive,
                 // see section on salt below
                 // $this->salt,
         ));
@@ -106,13 +103,13 @@ class User implements UserInterface, \Serializable {
     /** @see \Serializable::unserialize() */
     public function unserialize($serialized) {
         list (
-                $this->id,
-                $this->email,
-                $this->password,
-                $this->isActive,
-                // see section on salt below
-                // $this->salt
-                ) = unserialize($serialized);
+            $this->id,
+            $this->email,
+            $this->password,
+            // $this->isActive,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized);
     }
 
     function getId() {

@@ -1,7 +1,13 @@
 @import 'partials/header';
-@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
-
+@import 'partials/admin';
+@import 'partials/login';
+// @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+html, body {
+	height: 100%;
+}
 body {
 	
 	font-family: 'Source Code Pro', monospace;
+	//background-color: pink;
 }
+

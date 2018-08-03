@@ -29,7 +29,6 @@ class MessageController extends Controller
     public function new(Request $request): Response
     {
         $message = new Message();
-        $message->setCreatedAt(new \DateTime('now'));
         $form = $this->createForm(MessageType::class, $message);
         $form->handleRequest($request);
 
@@ -38,21 +37,13 @@ class MessageController extends Controller
             $em->persist($message);
             $em->flush();
 
-            return $this->redirectToRoute('message_index');
+            return $this->redirectToRoute('admin');
         }
 
         return $this->render('message/new.html.twig', [
             'message' => $message,
             'form' => $form->createView(),
         ]);
-    }
-
-    /**
-     * @Route("/{id}", name="message_show", methods="GET")
-     */
-    public function show(Message $message): Response
-    {
-        return $this->render('message/show.html.twig', ['message' => $message]);
     }
 
     /**
@@ -66,7 +57,7 @@ class MessageController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('message_edit', ['id' => $message->getId()]);
+            return $this->redirectToRoute('admin');
         }
 
         return $this->render('message/edit.html.twig', [
@@ -86,6 +77,6 @@ class MessageController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('message_index');
+        return $this->redirectToRoute('admin');
     }
 }

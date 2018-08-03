@@ -1,13 +1,30 @@
 {% extends 'admin/base-admin.html.twig' %}
 
-{% block title %}Edit Projects{% endblock %}
+{% block title %}Edit Project{% endblock %}
 
-{% block body %}
-    <h1>Edit Projects</h1>
+	{% block body %}
+		<div class="edit container">
+			<h2>Edit Project</h2>
+			<a href="{{ path('admin') }}"><button class="btn btn-primary btn-sm">BACK</button></a>
 
-    {{ include('projects/_form.html.twig', {'button_label': 'Update'}) }}
+			{{ form_start(form) }}
 
-    <a href="{{ path('projects_index') }}">back to list</a>
+			{{ form_errors(form) }}
 
-    {{ include('projects/_delete_form.html.twig') }}
-{% endblock %}
+			{{ form_row(form.name) }}
+			{{ form_row(form.image) }}
+			{{ form_row(form.content) }}
+			{{ form_row(form.github) }}
+			{{ form_row(form.live) }}
+			{{ form_row(form.techno) }}
+			{{ form_row(form.date) }}
+			{{ form_row(form.display) }}
+
+			<button class="btn btn-warning btn-sm">{{ button_label|default('Save') }}</button>
+
+			{{ form_end(form) }}
+
+			{{ include('projects/_delete_form.html.twig') }}
+
+		</div>
+	{% endblock %}

@@ -37,21 +37,13 @@ class SkillsController extends Controller
             $em->persist($skill);
             $em->flush();
 
-            return $this->redirectToRoute('skills_index');
+            return $this->redirectToRoute('admin');
         }
 
         return $this->render('skills/new.html.twig', [
             'skill' => $skill,
             'form' => $form->createView(),
         ]);
-    }
-
-    /**
-     * @Route("/{id}", name="skills_show", methods="GET")
-     */
-    public function show(Skills $skill): Response
-    {
-        return $this->render('skills/show.html.twig', ['skill' => $skill]);
     }
 
     /**
@@ -65,7 +57,7 @@ class SkillsController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('skills_edit', ['id' => $skill->getId()]);
+            return $this->redirectToRoute('admin');
         }
 
         return $this->render('skills/edit.html.twig', [
@@ -85,6 +77,6 @@ class SkillsController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('skills_index');
+        return $this->redirectToRoute('admin');
     }
 }

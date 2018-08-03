@@ -37,21 +37,13 @@ class ResumeController extends Controller
             $em->persist($resume);
             $em->flush();
 
-            return $this->redirectToRoute('resume_index');
+            return $this->redirectToRoute('admin');
         }
 
         return $this->render('resume/new.html.twig', [
             'resume' => $resume,
             'form' => $form->createView(),
         ]);
-    }
-
-    /**
-     * @Route("/{id}", name="resume_show", methods="GET")
-     */
-    public function show(Resume $resume): Response
-    {
-        return $this->render('resume/show.html.twig', ['resume' => $resume]);
     }
 
     /**
@@ -65,7 +57,7 @@ class ResumeController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('resume_edit', ['id' => $resume->getId()]);
+            return $this->redirectToRoute('admin');
         }
 
         return $this->render('resume/edit.html.twig', [
@@ -85,6 +77,6 @@ class ResumeController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('resume_index');
+        return $this->redirectToRoute('admin');
     }
 }

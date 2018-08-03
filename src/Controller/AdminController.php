@@ -4,6 +4,10 @@ namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use App\Repository\MessageRepository;
+use App\Repository\ProjectsRepository;
+use App\Repository\ResumeRepository;
+use App\Repository\SkillsRepository;
 use App\Entity\Skills;
 use App\Entity\Projects;
 use App\Entity\Resume;
@@ -15,14 +19,16 @@ class AdminController extends Controller
     /**
      * @Route("/admin", name="admin")
      */
-    public function index()
+    public function index(MessageRepository $messageRepository, ProjectsRepository $projectsRepository, ResumeRepository $resumeRepository, SkillsRepository $skillsRepository)
     {
 
-    	$entities = ['Messages', 'Projects', 'Resume', 'Skills'];
+    	return $this->render('admin/index.html.twig', [
+            'messages' => $messageRepository->findAll(),
+            'projects' => $projectsRepository->findAll(),
+            'resumes' => $resumeRepository->findAll(),
+            'skills' => $skillsRepository->findAll()
 
-    	return $this->render('admin/base-admin.html.twig', [
-    		'controller_name' => 'AdminController'
-    	]);
+        ]);
     }
 
 }

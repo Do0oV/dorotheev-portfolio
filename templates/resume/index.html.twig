@@ -1,45 +1,74 @@
-{% extends 'admin/base-admin.html.twig' %}
 
-{% block title %}Resume index{% endblock %}
 
-    {% block body %}
-        <a href="{{ path('admin') }}">Back to Admin</a>
-        
-        <h1>Resume index</h1>
+{% block body %}
+    <button class="btn table" id="resume" style="">RESUME</button>
+    <div class="table" id="resume-list">
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Title</th>
-                    <th>Company</th>
-                    <th>Year</th>
-                    <th>Content</th>
-                    <th>Genre</th>
-                    <th>actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for resume in resumes %}
-                    <tr>
-                        <td>{{ resume.id }}</td>
-                        <td>{{ resume.title }}</td>
-                        <td>{{ resume.company }}</td>
-                        <td>{{ resume.year }}</td>
-                        <td>{{ resume.content }}</td>
-                        <td>{{ resume.genre }}</td>
-                        <td>
-                            <a href="{{ path('resume_show', {'id': resume.id}) }}">show</a>
-                            <a href="{{ path('resume_edit', {'id': resume.id}) }}">edit</a>
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="7">no records found</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
 
-        <a href="{{ path('resume_new') }}">Create new</a>
-    {% endblock %}
+        <div class="row header blue">
+            <div class="cell">
+                Id
+            </div>
+            <div class="cell">
+                Title
+            </div>
+            <div class="cell">
+                Company
+            </div>
+            <div class="cell">
+                Year
+            </div>
+            <div class="cell">
+                Content
+            </div>
+            <div class="cell">
+                Genre
+            </div>
+            <div class="cell">
+                Actions
+            </div>
+        </div>
+
+        {% for resume in resumes %}
+
+            <div class="row" >
+                <div class="cell" data-title="Id">
+                    {{ resume.id }}
+                </div>
+                <div class="cell" data-title="Name">
+                    {{ resume.title }}
+                </div>
+                <div class="cell" data-title="Image">
+                    {{ resume.company }}
+                </div>
+                <div class="cell" data-title="Content">
+                    {{ resume.year }}
+                </div>
+                <div class="cell" data-title="Github">
+                    {{ resume.content }}
+                </div>
+                <div class="cell" data-title="Live">
+                    {{ resume.genre }}
+                </div>
+                <div class="cell" data-title="action">
+                    {{ include('resume/_delete_form.html.twig') }}
+                    <a href="{{ path('resume_edit', {'id': resume.id}) }}"><button class="btn btn-secondary btn-sm">EDIT</button></a>
+                </div>
+            </div>
+
+        {% else %}
+
+            <div class="row" >
+                <div class="cell" data-title="Id">
+                    no records found
+                </div>
+            </div>
+
+        {% endfor %}
+
+        <div class="">
+            <a href="{{ path('resume_new') }}"><button class="btn btn-success" style="width:100%">ADD</button></a>
+        </div>
+    </div>
+    
+{% endblock %}
