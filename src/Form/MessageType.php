@@ -24,10 +24,7 @@ class MessageType extends AbstractType
                 ]
             ])
             ->add('message', TextareaType::class, [
-                'label' => ' ',
-                'attr' => [
-                    'placeholder' => 'Your message'
-                ]
+                'label' => ' '
             ]) 
         ;
     }

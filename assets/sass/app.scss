@@ -1,13 +1,33 @@
 @import 'partials/header';
 @import 'partials/admin';
 @import 'partials/login';
+@import 'partials/menu';
+@import 'partials/contact';
 // @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 html, body {
 	height: 100%;
 }
 body {
 	
-	font-family: 'Source Code Pro', monospace;
+	font-family:  'Elianto', monospace;
 	//background-color: pink;
 }
+section{
+	height: 100vh;
+}
 
+
+
+#about{
+	background-color: white;
+}
+#projects{
+	background-color: grey;
+}
+#skills{
+	background-color: #21a8bf;
+}
+#resume-front{
+	background-color: white;
+	height: 100vh;
+}

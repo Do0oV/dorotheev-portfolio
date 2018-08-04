@@ -2,21 +2,92 @@
 
 {% block title %}{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 12px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	{% block body %}
+		<header>
+			<div class="hamburger">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div id="myNav" class="overlay">
+				<div class="overlay-content">
+					<a href="#">About me</a>
+					<a href="#">Projects</a>
+					<a href="#">Skills</a>
+					<a href="#">Resume</a>
+					<a href="#">Contact</a>
+				</div>
+			</div>
+		</header>
+		<div class="">
 
-<div class="example-wrapper">
+			<section id="header">
 
-	<ul>
-		{% for project in projects %}
-			<li><a href="{{ path('show-project', {'id': project.id}) }}">{{ project.name }}</a></li>
-		{% endfor %}
-	</ul>
-</div>
+				<div class="inner-div">
+					<h1 class="">DOROTHEE VIARD</h1>
+					<h2 class="">Web Developer</h2>
+				</div>
+				<div class="social">
+					<a href=""><img class="git" src="{{ asset('build/images/github.svg')}}" alt=""></a>
+					<a href=""><img  class="email" src="{{ asset('build/images/email.svg')}}" alt=""></a>
+					<a href=""><img class="link" src="{{ asset('build/images/linkedin.svg')}}" alt=""></a>
 
-{{ include('contact/index.html.twig', {'button_label': 'Send'}) }}
+				</div>
+				<div class="scroll-icon">
+					<svg version="1.1" id="icn" fill="#fff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					width="40px" height="50px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+					<polygon opacity="0" points="19.9,21 0,1.3 1.4,0 19.9,18.3 38.6,0 40,1.3 "><animate id="first" attributeName="opacity" attributeType="XML" dur="3s" from="1" to="0" repeatCount="indefinite"  begin="0"/></polygon>
+					<polygon id="arrow-two" opacity="0"  points="19.9,30.9 0,11.2 1.4,9.9 19.9,28.2 38.6,9.8 40,11.2 "><animate id="second" attributeName="opacity" attributeType="XML" dur="3s" from="1" to="0" repeatCount="indefinite"  begin="1s" /></polygon>
+					<polygon id="arrow-three"  opacity="0" points="19.9,40 0,20.3 1.4,19 19.9,37.3 38.6,19 40,20.3 "><animate id="third" attributeName="opacity" attributeType="XML" dur="3s" from="1" to="0" repeatCount="indefinite"  begin="2s"  /></polygon>
+				</svg>
+			</div>
+
+		</section>
+
+		<section id="about"></section>
+		<section id="projects">
+			<ul>
+				{% for project in projects %}
+					<li><a href="{{ path('show-project', {'id': project.id}) }}">{{ project.name }}</a></li>
+				{% endfor %}
+			</ul>
+		</section>
+		<section id="skills"></section>
+		<section id="resume-front"></section>
+		<section id="contact">
+			<h2>GET IN TOUCH</h2>
+
+			<div id="form">
+
+
+				<form id="full" name="message" method="post">
+
+					<label for="message_email">EMAIL
+						<input type="email" id="message_email" name="message[email]" required="required" />
+					</label>
+
+					<label for="message_message" class="">MESSAGE
+						<textarea id="message_message" name="message[message]" required="required"></textarea>
+					</label>
+
+					<button class="btn-send">Send</button>
+
+					<input type="hidden" id="message__token" name="message[_token]" value="zS_E61o1whcLXsToaDtim4ouUcw01ESHI8RJBab2Tlw" />
+				</form>
+
+			</div>
+
+
+			<div class="icon-bottom">
+				<a href=""><img class="git-bottom" src="{{ asset('build/images/github.svg')}}" alt=""></a>
+				<a href=""><img class="none-bottom" src="{{ asset('build/images/linkedin.svg')}}" alt=""></a>
+				<a href=""><img class="link-bottom" src="{{ asset('build/images/linkedin.svg')}}" alt=""></a>
+			</div>
+		</section>
+
+
+	</div>
+
+
 
 {% endblock %}

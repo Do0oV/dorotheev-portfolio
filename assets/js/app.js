@@ -1,25 +1,34 @@
 require('../sass/app.scss');
 
+
 $(function() {
 	$('#resume-list').hide();
 	$('#project-list').hide();
 	$('#message-list').hide();
 	$('#skill-list').hide();
+	$('#myNav').hide();
+
 
 	$('#resume').click(function(){
-	    $('#resume-list').toggle('fast');
+		$('#resume-list').toggle('fast');
 	});
 	$('#project').click(function(){
-	    $('#project-list').animate({
-	      width: "toggle"
-	    });
+		$('#project-list').animate({
+			width: "toggle"
+		});
 	});
 	$('#message').click(function(){
-	    $('#message-list').fadeToggle('5000');
+		$('#message-list').fadeToggle('5000');
 	});
 	$('#skill').click(function(){
-	    $('#skill-list').fadeToggle('5000');
+		$('#skill-list').fadeToggle('5000');
 	});
+
+	$('.hamburger').on('click', function() {
+		$(this).toggleClass('opened');
+		$('#myNav').toggle('fast');
+	});
+
 
 
 	$('.alert-delete').click(function(e) {
@@ -28,4 +37,19 @@ $(function() {
 			$(this).parent('form').submit();
 		}
 	});
+
+
+
+
 })
+
+
+
+var $button = document.querySelector('.btn-send');
+$button.addEventListener('click', function() {
+  var duration = 0.3,
+      delay = 0.08;
+  TweenMax.to($button, duration, {scaleY: 1.6, ease: Expo.easeOut});
+  TweenMax.to($button, duration, {scaleX: 1.2, scaleY: 1, ease: Back.easeOut, easeParams: [3], delay: delay});
+  TweenMax.to($button, duration * 1.25, {scaleX: 1, scaleY: 1, ease: Back.easeOut, easeParams: [6], delay: delay * 3 });
+});

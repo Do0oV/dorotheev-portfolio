@@ -1,3 +1,93 @@
-nav {
-	background-color: blue;
+#header{
+	background-color: #21a8bf;
+	background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
+	position: relative;
 }
+#header h1{ 
+	position: absolute;
+	top: 15vh;
+	left: 0;
+	width: 100%;
+	/*background-color:  rgba(0, 0, 0, 0.2);*/;
+	color: #fff;
+	font-size: 5em;
+	letter-spacing: 0.05em;
+	text-align: center;
+}
+#header h2{
+	position: absolute;
+	top:50vh;
+	left: 0;
+	width: 100%;
+	font-size: 3em;
+	color: #fff;
+	letter-spacing: 0.3em;
+	text-align: center;
+}
+.scroll-icon {
+	bottom: 0;
+	right: 2%;
+	position: absolute;
+	transform: translate( -50%,-50%);
+}
+.social{
+	position: absolute;
+	display: flex;
+	justify-content: space-around;
+	height: 50px;
+	width: 100%;
+	bottom: 5vh;
+}
+.social img{
+	width: 5vh;
+	height: auto;
+}
+.git:hover, .email:hover, .link:hover{
+	transform: scale(1.2);
+
+}
+
+@media screen and (max-height: 700px) {
+	#header h1{
+		font-size: 4.5em;
+	}
+}
+@media screen and (max-height: 570px) {
+	#header h1{
+		font-size: 3.2em;
+	}
+}
+@media screen and (max-height: 450px) {
+	.overlay a {font-size: 20px}
+	#header h1{
+		font-size: 4em;
+	}
+	#header h2{
+		font-size:2em;
+	}
+}
+@media screen and (max-width: 800px) {
+	#header h1{
+		font-size: 4em;
+	}
+	.scroll-icon{
+		bottom: -35px;
+
+	}
+}
+
+@media screen and (max-width: 700px) {
+	#header h1{
+		font-size: 3em;
+	}
+
+}
+@media screen and (max-width: 470px) {
+	#header h1{
+		font-size: 3em;
+	}
+	#header h2{
+		font-size:2em;
+	}
+}
+
