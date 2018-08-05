@@ -33,6 +33,8 @@ class MessageType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Message::class,
+            'csrf_protection' => false,
         ]);
+
     }
 }

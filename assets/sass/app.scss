@@ -1,11 +1,26 @@
-@import 'partials/header';
-@import 'partials/admin';
-@import 'partials/login';
-@import 'partials/menu';
-@import 'partials/contact';
-// @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+ @import 'partials/header';
+ @import 'partials/admin';
+ @import 'partials/login';
+ @import 'partials/menu';
+ @import 'partials/contact';
+
+
+
+@font-face {
+	font-family: "Elianto";
+	src: url("fonts/Elianto-Regular.otf") format("truetype"),
+		url("fonts/Elianto-Regular.ttf") format("truetype");
+
+}
+@-ms-viewport{
+  width: device-width;
+  initial-scale: 1;
+}
+
 html, body {
 	height: 100%;
+	width: 100%;
+
 }
 body {
 	

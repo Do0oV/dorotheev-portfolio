@@ -30,31 +30,32 @@ class AppController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $message->setIp($request->getClientIp());
             $em = $this->getDoctrine()->getManager();
             $em->persist($message);
 
             $mail = (new \Swift_Message('Hello Email'))
-                ->setFrom('send@example.com')
-                ->setTo('dorothee.v@codeur.online')
-                ->setBody(
-                    $this->renderView(
+            ->setFrom('send@example.com')
+            ->setTo('dorothee.v@codeur.online')
+            ->setBody(
+                $this->renderView(
                         // templates/emails/registration.html.twig
-                        'emails/registration.html.twig',[
-                            'message' => $message
-                        ]
-                    ),
-                    'text/html'
-                    )
-                    
+                    'emails/registration.html.twig',[
+                        'message' => $message
+                    ]
+                ),
+                'text/html'
+            )
+            
                  //If you also want to include a plaintext version of the message
-                ->addPart(
-                    $this->renderView(
-                        'emails/registration.html.twig',[
-                            'message' => $message
-                        ]
-                    ),
-                    'text/html'
-                    );
+            ->addPart(
+                $this->renderView(
+                    'emails/registration.html.twig',[
+                        'message' => $message
+                    ]
+                ),
+                'text/html'
+            );
 
             // send the mail 
             $mailer->send($mail);
@@ -64,7 +65,7 @@ class AppController extends Controller
             // save to db
             $em->flush();
 
-            return $this->redirectToRoute('app');
+            return $this->redirectToRoute('app', ['_fragment' => 'contact']);
         }
 
         return $this->render('app/index.html.twig', [

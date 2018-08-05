@@ -28,15 +28,25 @@
 	transform: scale(1.2);
 }
 
-#form{
-	width: 55%;
-	height: 65%;
-	align-self: center;
-}
-
 .none-bottom{
 	visibility: hidden;
 }
+#form{
+	width: 70%;
+	height: 65%;
+	align-self: center;
+
+	label{
+	margin-bottom: 5%;
+	color: white;
+
+		input, textarea{
+			margin-top: 2%;
+		}
+	}
+}
+
+
 #full{
 	width: 100%;
 	height: 100%;
@@ -45,7 +55,7 @@
 	justify-content: space-between;
 }
 
-#message_email, #message_message{
+#message_email{
 	width: 100%;
 	height: 5vh;
 	border-radius: 3px;
@@ -53,7 +63,9 @@
 
 #message_message{
 	resize: none;
+	width: 100%;
 	height: 25vh;
+	border-radius: 3px;
 }
 
 .btn-send{
@@ -67,16 +79,26 @@
 	text-transform: uppercase;
 	border-radius: 3px;
 }
-label{
-	margin-bottom: 5%;
-	color: white;
-}
+
 @media screen and (max-width: 850px) {
 	#form{
 		width: 80%;
 		height: 65%;
 	}
 }
+
+@media screen and (max-width: 600px) {
+	.btn-send{
+		padding: 5px;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.btn-send{
+		width: 50%;
+	}
+}
+
 @media screen and (max-width: 400px) {
 	#contact{
 		h2{
@@ -84,8 +106,33 @@ label{
 		}
 	}
 }
-@media screen and (max-width: 450px) {
+@media screen and (max-height: 420px) {
+	.icon-bottom{
+		bottom: -10px;
+	}
 	.btn-send{
-		width: 50%;
+		width: 20%;
+		padding: 0;
+		display: block;
+		font-size: 1em;
+	}
+	#form{
+		height: 40%;
+		margin-top: -70vh;
+
+		label{
+
+			input, textarea{
+				margin-top: 5px;
+			}
+		}
+	}
+	#message_email{
+		height: 7vh;
+	}
+	#contact{
+		h2{
+			margin-top: -30vh;
+		}
 	}
 }

@@ -27,6 +27,11 @@ class Message
     private $message;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $ip;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $created_at;
@@ -63,6 +68,18 @@ class Message
     public function setMessage(string $message): self
     {
         $this->message = $message;
+
+        return $this;
+    }
+
+    public function getIp(): ?string
+    {
+        return $this->ip;
+    }
+
+    public function setIp(string $ip): self
+    {
+        $this->ip = $ip;
 
         return $this;
     }

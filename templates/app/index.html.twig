@@ -21,7 +21,7 @@
 		</header>
 		<div class="">
 
-			<section id="header">
+			<section class="mydiv" id="header">
 
 				<div class="inner-div">
 					<h1 class="">DOROTHEE VIARD</h1>
@@ -44,21 +44,21 @@
 
 		</section>
 
-		<section id="about"></section>
-		<section id="projects">
+		<section class="mydiv" id="about"></section>
+		<section class="mydiv" id="projects">
 			<ul>
 				{% for project in projects %}
 					<li><a href="{{ path('show-project', {'id': project.id}) }}">{{ project.name }}</a></li>
 				{% endfor %}
 			</ul>
 		</section>
-		<section id="skills"></section>
-		<section id="resume-front"></section>
-		<section id="contact">
+		<section class="mydiv" id="skills"></section>
+		<section class="mydiv" id="resume-front"></section>
+		<section class="mydiv" id="contact">
 			<h2>GET IN TOUCH</h2>
 			<div id="form">
 
-				<form id="full" name="message" method="post">
+				<form id="full" name="message" method="post" autocomplete="off">
 
 					<label for="message_email">EMAIL
 						<input type="email" id="message_email" name="message[email]" required="required" />
@@ -68,10 +68,12 @@
 						<textarea id="message_message" name="message[message]" required="required"></textarea>
 					</label>
 
+
 					<button class="btn-send">Send</button>
 
 				</form>
 
+				{% include 'flash_messages.html.twig' %}
 			</div>
 
 			<div class="icon-bottom">

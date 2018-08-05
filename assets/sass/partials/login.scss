@@ -11,6 +11,9 @@
       overflow: hidden;
     }
     input {
+      ::placeholder{
+        color: rgba(255,255,255,0.7);
+      }
       ::-webkit-input-placeholder {
        color: rgba(255,255,255,0.7);
      }
@@ -72,18 +75,19 @@
 }
 
 .login-remember {
-  background: transparent;
-  color: white;
   display: block;
   margin: 1rem;
   padding: .5rem;
   transition: 250ms background ease-in;
   width: calc(100% - 3rem);
-  &:focus {
-    background: white;
-    color: black;
-    transition: 250ms background ease-in;
-  }
+}
+
+.login-remember label{
+  color: rgba(255,255,255,0.7);
+}
+
+#remember_me{
+  margin-left: 1.5rem;
 }
 
 .login-submit {
