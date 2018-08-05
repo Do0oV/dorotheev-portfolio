@@ -4,15 +4,14 @@
  @import 'partials/menu';
  @import 'partials/contact';
 
-
-
 @font-face {
 	font-family: "Elianto";
 	src: url("fonts/Elianto-Regular.otf") format("truetype"),
 		url("fonts/Elianto-Regular.ttf") format("truetype");
 
 }
-@-ms-viewport{
+
+@-ms-viewport {
   width: device-width;
   initial-scale: 1;
 }
@@ -22,27 +21,38 @@ html, body {
 	width: 100%;
 
 }
+
 body {
 	
 	font-family:  'Elianto', monospace;
 	//background-color: pink;
 }
-section{
+
+section {
 	height: 100vh;
 }
 
+.alert {
+	position:fixed; 
+    top: 0px; 
+    left: 0px; 
+    width: 100%;
+    z-index:9999; 
+}
 
-
-#about{
+#about {
 	background-color: white;
 }
-#projects{
+
+#projects {
 	background-color: grey;
 }
-#skills{
+
+#skills {
 	background-color: #21a8bf;
 }
-#resume-front{
+
+#resume-front {
 	background-color: white;
 	height: 100vh;
 }

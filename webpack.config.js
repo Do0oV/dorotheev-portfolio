@@ -24,7 +24,7 @@ Encore
 
     .addPlugin(
         new CopyWebpackPlugin([
-            { from: "./assets/images", to: "images" }, 
+            { from: "./assets/images", to: "images" },
         ])
     )
     // uncomment for legacy applications that require $/jQuery as a global variable

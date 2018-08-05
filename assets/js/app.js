@@ -1,7 +1,6 @@
 require('../sass/app.scss');
 
 import '../js/admin.js';
-import '../js/service-worker.js';
 
 $(function() {
 	$('#resume-list').hide();
@@ -60,8 +59,3 @@ $button.addEventListener('click', function() {
 });
 
 
-if('serviceWorker' in navigator) {
-  navigator.serviceWorker
-           .register('../js/service-worker.js')
-           .then(function() { console.log("Service Worker Registered"); });
-}

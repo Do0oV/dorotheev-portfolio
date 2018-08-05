@@ -1,5 +1,5 @@
 //SCROLL BY 100VH
-$(document).ready(function () {
+/*$(document).ready(function () {
     var divs = $('.mydiv');
     var dir = 'up'; // wheel scroll direction
     var div = 0; // current div
@@ -25,15 +25,15 @@ $(document).ready(function () {
         //console.log(div, dir, divs.length);
         $('html,body').stop().animate({
             scrollTop: divs.eq(div).offset().top
-        }, 1000);
+        }, 200);
         return false;
     });
-
+*/
     //BACK TO TOP
 //     $(window).resize(function () {
 //         $('html,body').scrollTop(divs.eq(div).offset().top);
 //     });
 
 
-
-});
+/*
+});*/
