@@ -37,7 +37,8 @@ class Message
     private $created_at;
 
     public function __construct()
-    {
+    {   
+        date_default_timezone_set("Europe/Madrid");
         $datetime = new \DateTime();
         $this->setCreatedAt($datetime);
     }

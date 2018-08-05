@@ -1,15 +1,84 @@
-<h3>New contact message</h3>
+<style>
+
+body {
+	font-family: sans-serif;
+	background: #fff;
+}
+.email--background {
+		background: #eee;
+		padding: 10px;
+		text-align: center;
+}
+
+.email--container {
+		max-width: 500px;
+		background: #fff;
+		margin: 0 auto;
+		overflow: hidden;
+		border-radius: 5px;
+}
+
+.email--inner-container {
+		padding: 0 5% 40px;
+} 
 
 
-Hi {{ message.email }} ! You're successfully registered.
-<br>
 
-message : {{ message.message }}
-<br>
-{# example, assuming you have a route named "login" #}
-To login, go to: <a href="{{ url('login') }}">link example</a>.
+img {
+	padding-top: 20px;
+	max-width: 100%;
+	display: block;
+	margin:auto;
+}
 
-Thanks!
+p {
+	font-size: 16px;
+	line-height: 1.5;
+	color: darkgray;
+	margin-bottom: 30px;
+}
 
-{# Makes an absolute URL to the /images/logo.png file #}
-<img src="{{ absolute_url(asset('images/logo.png')) }}">
+.cta {
+	display: inline-block;
+	padding: 10px 20px;
+	color: #fff;
+	background: #373629;
+	text-decoration: none;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	border-radius: 5px;
+	font-size: 13px;
+}
+
+.footer-junk {
+	padding: 20px;
+	font-size: 10px;
+}
+
+.footer-junk a {
+	color: lightgray;
+}
+
+</style>
+
+
+
+<div class="email--background">
+	<h3>New contact message</h3>
+
+	<div class="email--container">
+		<img src="http://adsarathi.com/wp-content/uploads/2018/01/2-2-email-internet-png-thumb1234567890.png">
+
+		<div class="email--inner-container">
+			<p>{{ message.email }} sent you a contact message.<br></p>
+			<p>message :<br> {{ message.message }}</p>
+			<a href="{{ url('app') }}" class="cta">GO TO ADMIN</a>
+		</div>
+
+	</div>
+
+	<div class="footer-junk">
+		<a href="#">Unsubscribe</a>
+	</div>
+
+</div>

@@ -33,6 +33,9 @@ class AppController extends Controller
             $message->setIp($request->getClientIp());
             $em = $this->getDoctrine()->getManager();
             $em->persist($message);
+            // save to db
+            $em->flush();
+            $now = new \DateTime();
 
             $mail = (new \Swift_Message('Hello Email'))
             ->setFrom('send@example.com')
@@ -62,8 +65,7 @@ class AppController extends Controller
 
             $this->addFlash('success', 'Your message has been sent');
 
-            // save to db
-            $em->flush();
+            
 
             return $this->redirectToRoute('app', ['_fragment' => 'contact']);
         }
