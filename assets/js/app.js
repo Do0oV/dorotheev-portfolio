@@ -44,6 +44,12 @@ $(function() {
 	$('#header').css("height", $(window).height());
 
 
+
+	$( ".overlay-content > a" ).on('click', function() {
+		$('#myNav').hide('fast');
+	});
+
+
 })
 
 

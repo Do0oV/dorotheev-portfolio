@@ -23,7 +23,9 @@ class Skills
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string|null
+     *
+     * @ORM\Column(name="image", type="text", length=65535, nullable=true)
      */
     private $image;
 
@@ -49,16 +51,17 @@ class Skills
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getImage()
     {
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage( $image): self
     {
-        $this->image = $image;
-
-        return $this;
+        if($image !== null) {
+            $this->image = $image;
+        }  
+        return $this;       
     }
 
     public function getGenre(): ?string
@@ -71,5 +74,5 @@ class Skills
         $this->genre = $genre;
 
         return $this;
-    }
+    } 
 }
