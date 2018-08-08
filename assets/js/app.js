@@ -47,6 +47,7 @@ $(function() {
 
 	$( ".overlay-content > a" ).on('click', function() {
 		$('#myNav').hide('fast');
+		$('.hamburger').removeClass('opened');
 	});
 
 
