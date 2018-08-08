@@ -117,6 +117,7 @@
 .underlay-photo {
   animation: hue-rotate 6s infinite;
   background: url('images/admin.jpeg');
+  background-position: center;
   background-size: cover;
   -webkit-filter: grayscale(30%);
   z-index: -1;
