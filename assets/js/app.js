@@ -54,7 +54,13 @@ $(function() {
 })
 
 
-
+// Check that service workers are registered
+// if ('serviceWorker' in navigator) {
+//   // Use the window load event to keep the page load performant
+//   window.addEventListener('load', () => {
+//     navigator.serviceWorker.register('/service_worker.js');
+//   });
+// }
 
 var $button = document.querySelector('.btn-send');
 $button.addEventListener('click', function() {

@@ -25,6 +25,12 @@ Encore
     .addPlugin(
         new CopyWebpackPlugin([
             { from: "./assets/images", to: "images" },
+            {
+                from: './assets/js/service-worker.js',
+                transform: function(fileContent, path) {
+                    return fileContent;
+                },
+                to: 'service-worker.js' }
         ])
     )
     // uncomment for legacy applications that require $/jQuery as a global variable
