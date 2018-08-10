@@ -1,0 +1,32 @@
+{
+  "build/app.css": "/build/app.css",
+  "build/app.js": "/build/app.js",
+  "build/fonts/Elianto-Regular.otf": "/build/fonts/Elianto-Regular.7e57dbb0.otf",
+  "build/fonts/Elianto-Regular.ttf": "/build/fonts/Elianto-Regular.217c0af5.ttf",
+  "build/images/admin.jpeg": "/build/images/admin.344282f1.jpeg",
+  "build/images/cartographer.png": "/build/images/cartographer.28424986.png",
+
+  "short_name": "DV",
+  "name": "Dorothee Viard",
+  "icons": [
+  	{
+      "src": "/build/images/icon/android-icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/build/images/icon/android-icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/build/images/icon/android-icon-48x48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    }
+  ],
+  "start_url": ".",
+  "background_color": "#21a8bf",
+  "display": "standalone",
+  "theme_color": "#21a8bf"
+}

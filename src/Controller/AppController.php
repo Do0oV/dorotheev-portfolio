@@ -12,6 +12,7 @@ use App\Entity\Projects;
 use App\Entity\Resume;
 use App\Entity\Message;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Finder\Finder;
 
 class AppController extends Controller
 {
@@ -19,7 +20,7 @@ class AppController extends Controller
      * @Route("/", name="app")
      */
     public function index(Request $request, \Swift_Mailer $mailer)
-    {
+    {   
 
         $message = new Message();
         $skills = $this->getDoctrine()->getRepository(Skills::class);
