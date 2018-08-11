@@ -25,7 +25,8 @@ Encore
 
     .addPlugin(
         new CopyWebpackPlugin([
-            { from: "./assets/images", to: "images" }
+            { from: "./assets/images", to: "images" },
+            { from: "./assets/sass/bootstrap.min.css", to: "bootstrap.min.css" }
             ])
         )
 
