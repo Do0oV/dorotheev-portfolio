@@ -41,7 +41,7 @@ $(function() {
 
 	//FIX MOBILE BROWSER BAR ON 100VH HEADER
 
-	$('#header').css("height", $(window).height());
+	// $('#header').css("height", $(window).height());
 
 
 

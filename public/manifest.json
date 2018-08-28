@@ -10,22 +10,27 @@
   "name": "Dorothee Viard",
   "icons": [
   	{
-      "src": "/build/images/icon/android-icon-512x512.png",
+      "src": "/build/images/icon/mstile-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     },
     {
-      "src": "/build/images/icon/android-icon-192x192.png",
+      "src": "/build/images/icon/favicon-196x196.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "196x196"
     },
     {
-      "src": "/build/images/icon/android-icon-48x48.png",
+      "src": "/build/images/icon/mstile-144x144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "/build/images/icon/favicon.ico",
       "type": "image/png",
       "sizes": "48x48"
     }
   ],
-  "start_url": ".",
+  "start_url": "/?utm_source=launcher",
   "background_color": "#21a8bf",
   "display": "standalone",
   "theme_color": "#21a8bf"

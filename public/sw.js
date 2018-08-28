@@ -19,6 +19,10 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox
  * See https://goo.gl/S9QRab
  */
  workbox.precaching.precacheAndRoute([
+    {
+    "url": "index.php",
+    "revision": "9cb6122ab1617b277c0a944b2a2dae64"
+  },
   {
     "url": "build/app.css",
     "revision": "821568ec2c8f53643421bdd44929bc87"
@@ -220,10 +224,6 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox
     "revision": "888838f6c40af9ca10da86fd1d107d47"
   },
   {
-    "url": "index.php",
-    "revision": "9cb6122ab1617b277c0a944b2a2dae64"
-  },
-  {
     "url": "manifest.json",
     "revision": "c9c558c17a9e0a40d1ef060c6cdd9860"
   },
@@ -239,12 +239,14 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox
 
 
 //workbox.setConfig({ debug: true });
+
+
 workbox.routing.registerRoute(
   new RegExp('.*\.js'),
   workbox.strategies.cacheFirst()
 );
 workbox.routing.registerRoute('/', workbox.strategies.staleWhileRevalidate());
-
+workbox.routing.registerRoute(/build\/images\/.+/, workbox.strategies.cacheFirst());
 
 workbox.routing.registerRoute(
   // Cache CSS files
@@ -255,22 +257,22 @@ workbox.routing.registerRoute(
     cacheName: 'css-cache',
   })
 );
-
-workbox.routing.registerRoute(
-  // Cache image files
-  /.*\.(?:png|jpg|jpeg|svg|gif)/,
-  // Use the cache if it's available
-  workbox.strategies.cacheFirst({
-    // Use a custom cache name
-    cacheName: 'image-cache',
-    plugins: [
-      new workbox.expiration.Plugin({
-        // Cache only 20 images
-        maxEntries: 20,
-        // Cache for a maximum of a week
-        maxAgeSeconds: 7 * 24 * 60 * 60,
-      })
-    ],
-  })
-);
+//self.addEventListener('fetch', function(event) {});
+// workbox.routing.registerRoute(
+//   // Cache image files
+//   /.*\.(?:png|jpg|jpeg|svg|gif)/,
+//   // Use the cache if it's available
+//   workbox.strategies.cacheFirst({
+//     // Use a custom cache name
+//     cacheName: 'image-cache',
+//     plugins: [
+//       new workbox.expiration.Plugin({
+//         // Cache only 20 images
+//         maxEntries: 50,
+//         // Cache for a maximum of a week
+//         maxAgeSeconds: 7 * 24 * 60 * 60,
+//       })
+//     ],
+//   })
+// );
 
