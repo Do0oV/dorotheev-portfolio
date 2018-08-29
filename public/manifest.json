@@ -1,13 +1,7 @@
 {
-  "build/app.css": "/build/app.css",
-  "build/app.js": "/build/app.js",
-  "build/fonts/Elianto-Regular.otf": "/build/fonts/Elianto-Regular.7e57dbb0.otf",
-  "build/fonts/Elianto-Regular.ttf": "/build/fonts/Elianto-Regular.217c0af5.ttf",
-  "build/images/admin.jpeg": "/build/images/admin.344282f1.jpeg",
-  "build/images/cartographer.png": "/build/images/cartographer.28424986.png",
-
   "short_name": "DV",
   "name": "Dorothee Viard",
+
   "icons": [
   	{
       "src": "/build/images/icon/mstile-512x512.png",
@@ -15,9 +9,9 @@
       "sizes": "512x512"
     },
     {
-      "src": "/build/images/icon/favicon-196x196.png",
+      "src": "/build/images/icon/favicon-192x192.png",
       "type": "image/png",
-      "sizes": "196x196"
+      "sizes": "192x192"
     },
     {
       "src": "/build/images/icon/mstile-144x144.png",

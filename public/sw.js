@@ -246,6 +246,7 @@ workbox.routing.registerRoute(
   workbox.strategies.cacheFirst()
 );
 workbox.routing.registerRoute('/', workbox.strategies.staleWhileRevalidate());
+
 workbox.routing.registerRoute(/build\/images\/.+/, workbox.strategies.cacheFirst());
 
 workbox.routing.registerRoute(
