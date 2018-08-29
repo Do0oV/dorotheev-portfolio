@@ -82,7 +82,9 @@
  	#aboutMe .container {
  		margin-top: 10px;
  	}
-
+ 	#aboutMe .signature{
+ 		margin-top: 60px;
+ 	}
  	#aboutMe .info p{
  		margin-top: 40px;
  		font-size: 14px;
@@ -117,7 +119,7 @@
  		margin-top: -50px;
  	}
  	#aboutMe .signature{
- 		padding-top: 20px;
+ 		margin-top: 40px;
  	}
  	#aboutMe h2 {
  		font-size: 1.7rem;
@@ -129,7 +131,17 @@
  	}
 
  }
-
+ @media screen and (max-height: 600px) {
+ 	#aboutMe{ 
+ 		.info p {
+ 			font-size: 16px;
+ 			line-height: 22px;
+ 		}
+ 		.signature{
+ 			margin-top: 20px;
+ 		}
+ 	}
+ }
  @media screen and (max-height: 400px) {
 
 
@@ -143,7 +155,12 @@
  			margin: auto;
  		}
  		.info p {
- 			margin-top: 100px;
+ 			margin-top: 20px;
+ 			font-size: 12px;
+ 			line-height: 16px;
+ 		}
+ 		.signature{
+ 			margin-top: 20px;
  		}
 
  	}

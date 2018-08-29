@@ -61,13 +61,13 @@ class SkillsController extends Controller
     {
         $form = $this->createForm(SkillsType::class, $skill);
         $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             //file upload is required=false in edit so if the field is not null we process the change
             if ( $form["image"]->getData() !=  null) {
 
-                $em = $this->getDoctrine()->getManager();
 
                 $file = $form["image"]->getData();
                 $fileName = md5(uniqid()).'.'.$file->guessExtension();

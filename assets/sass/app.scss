@@ -3,6 +3,7 @@
  @import 'partials/menu';
  @import 'partials/contact';
  @import 'partials/about';
+ @import 'partials/skills';
 
  @font-face {
  	font-family: "Elianto";
@@ -49,26 +50,6 @@
  }
 
  
-
- #skills {
- 	position: relative;
- 	background-color: #21a8bf;
- 	h2{
- 		position: absolute;
- 		top:50px;
- 		left: 50%;
- 		transform: translateX(-50%);
-
- 	}
- 	.icon-container {
- 		height: 100%;
- 		display: flex;
- 		flex-direction: row;
- 		justify-content: space-between;
- 		align-items: center;
- 	}
- }
-
  #projects {
  	position: relative;
  	background-color: grey;
