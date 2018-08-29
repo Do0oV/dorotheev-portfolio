@@ -1,0 +1,152 @@
+ @font-face {
+ 	font-family: "Brush Script MT";
+ 	src: url("fonts/BRUSHSCI.ttf") format("truetype"),
+ 	url("fonts/BRUSHSCI.ttf") format("truetype");
+
+ }
+
+ #aboutMe {
+ 	position: relative;
+ 	display: flex;
+ 	align-items: center;
+ 	justify-content: center;
+ 	background-color: #4ccbe0;
+
+
+ 	h2{
+ 		position: absolute;
+ 		top:50px;
+ 		left: 50%;
+ 		transform: translateX(-50%);
+ 	}
+ 	.btn-cv{
+ 		padding-bottom: 4px;
+ 		padding-top: 6px;
+ 		position: absolute;
+ 		bottom: 50px;
+ 		left: 50%;
+ 		transform: translateX(-50%);
+ 	}
+ }
+
+ #aboutMe .info {
+ 	display: flex;
+ 	flex-direction: row;
+ }
+ #aboutMe .info p {
+ 	line-height: 270%;
+ }
+
+ #aboutMe .signature {
+ 	font-family: 'Brush Script MT', cursive;
+ 	font-size: 150%;
+ 	float: right;
+ 	color: #0d2435;
+ 	opacity: .9;
+ }
+ .btn-cv{
+ 	width: 25%;
+ 	margin: auto;
+ 	background: white;
+ 	color: #4ccbe0;
+ 	border: none;
+ 	font-size: 18px;
+ 	text-transform: uppercase;
+ 	border-radius: 3px;
+ 	border: 2px solid #4ccbe0;
+ 	transition: all 0.5s ease;
+
+ 	&:hover{
+ 		background: #4ccbe0;
+ 		color: white;
+ 		border: 2px solid white;
+
+ 	}
+ }
+
+ @media screen and (max-width: 790px) {
+ 	#aboutMe h2{
+ 		z-index: 10;
+ 	}
+ 	.btn-cv {
+ 		width: 20%;
+ 		font-size: 16px;
+ 	}
+
+ 	#aboutMe{
+ 		flex-direction: column;
+ 		align-items: center;
+ 		justify-content: center;
+ 	}
+
+ 	#aboutMe .container {
+ 		margin-top: 10px;
+ 	}
+
+ 	#aboutMe .info p{
+ 		margin-top: 40px;
+ 		font-size: 14px;
+ 		line-height: 18px;
+ 	}
+
+ 	#aboutMe img {
+ 		display: block;
+ 		margin: 0 auto;
+ 		width: 30%;
+ 	}
+
+ 	#aboutMe .info {
+ 		flex-direction: column-reverse;
+ 	}
+
+ }
+
+
+ @media screen and (max-width: 865px) {
+ 	.btn-cv {
+ 		width: 50%;
+ 		font-size: 14px;
+ 	}
+ }
+
+ @media screen and (max-width: 480px) {
+
+
+ 	#aboutMe img {
+ 		width: 40%;
+ 		margin-top: -50px;
+ 	}
+ 	#aboutMe .signature{
+ 		padding-top: 20px;
+ 	}
+ 	#aboutMe h2 {
+ 		font-size: 1.7rem;
+ 	}
+ 	#aboutMe .info p{
+ 		margin-top: 40px;
+ 		font-size: 12px;
+ 		line-height: 16px;
+ 	}
+
+ }
+
+ @media screen and (max-height: 400px) {
+
+
+ 	#aboutMe{
+ 		height: 130vh;
+ 		img{
+ 			position: absolute;
+ 			top: 0;
+ 			bottom: 0;
+ 			right:0;
+ 			margin: auto;
+ 		}
+ 		.info p {
+ 			margin-top: 100px;
+ 		}
+
+ 	}
+
+ }
+

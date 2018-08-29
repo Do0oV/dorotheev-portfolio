@@ -63,22 +63,24 @@ $hamsizemultiplier: 2;
 }
 
 .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
 	height: 100vh;
 	width: 100%;
-	position: fixed;
 	z-index: 1;
-	top: 0;
-	left: 0;
 	background-color: rgba(0,0,0, 0.9);
 	overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  
 }
 .overlay-content {
-	position: relative;
-	top: 25%;
 	width: 100%;
-	text-align: center;
-	margin-top: 30px;
 }
+
 .overlay a {
 	font-family: "Elianto";
 	padding: 8px;

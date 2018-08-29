@@ -1,27 +1,24 @@
 {% extends 'admin/base-admin.html.twig' %}
 
-{% block title %}Edit Skill{% endblock %}
+{% block title %}Edit About{% endblock %}
 
 	{% block body %}
 		<div class="edit container">
-			<h2>Edit Skill</h2>
+			<h2>Edit About</h2>
 			<a href="{{ path('admin') }}"><button class="btn btn-primary btn-sm">BACK</button></a>
-			<img src="{{ asset('upload/') }}{{ skill.image }}" alt="alt image" style="width:60px;height:auto;">
+			<img src="{{ asset('upload/') }}{{ about.image }}" alt="alt image" style="width:60px;height:auto;">
+
 			{{ form_start(form) }}
 
 			{{ form_errors(form) }}
 
-
-			{{ form_row(form.name) }}
+			{{ form_row(form.Text) }}
 			{{ form_row(form.image) }}
-			{{ form_row(form.genre) }}
-
 
 			<button class="btn btn-warning btn-sm">{{ button_label|default('Save') }}</button>
 
 			{{ form_end(form) }}
 
-			{{ include('skills/_delete_form.html.twig') }}
-
+			{{ include('about/_delete_form.html.twig') }}
 		</div>
 	{% endblock %}

@@ -7,6 +7,7 @@ $(function() {
 	$('#project-list').hide();
 	$('#message-list').hide();
 	$('#skill-list').hide();
+	$('#about-list').hide();
 	$('#myNav').hide();
 
 
@@ -23,6 +24,9 @@ $(function() {
 	});
 	$('#skill').click(function(){
 		$('#skill-list').fadeToggle('5000');
+	});
+	$('#admin-about').click(function(){
+		$('#about-list').fadeToggle('5000');
 	});
 
 	$('.hamburger').on('click', function() {

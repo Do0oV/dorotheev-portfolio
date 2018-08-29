@@ -27,5 +27,6 @@
   "start_url": "/?utm_source=launcher",
   "background_color": "#21a8bf",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "theme_color": "#21a8bf"
 }

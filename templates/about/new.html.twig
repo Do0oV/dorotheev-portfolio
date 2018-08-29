@@ -1,0 +1,21 @@
+{% extends 'admin/base-admin.html.twig' %}
+
+{% block title %}New About{% endblock %}
+
+	{% block body %}
+		<div class="edit container">
+			<h2>New About</h2>
+			<a href="{{ path('admin') }}"><button class="btn btn-primary btn-sm">BACK</button></a>
+			{{ form_start(form) }}
+
+			{{ form_errors(form) }}
+
+			{{ form_row(form.Text) }}
+			{{ form_row(form.image) }}
+
+			<button class="btn btn-warning btn-sm">{{ button_label|default('save') }}</button>
+
+			{{ form_end(form) }}
+		</div>
+
+	{% endblock %}

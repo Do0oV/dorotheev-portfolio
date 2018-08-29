@@ -12,7 +12,7 @@
 			<div id="myNav" class="overlay">
 				<div class="overlay-content">
 					<a href="#header">Home</a>
-					<a href="#about">About me</a>
+					<a href="#aboutMe">About me</a>
 					<a href="#projects">Projects</a>
 					<a href="#skills">Skills</a>
 					<a href="#resume-front">Resume</a>
@@ -45,77 +45,81 @@
 
 	</section>
 
-	<section class="mydiv" id="about">
+	<section class="mydiv" id="aboutMe">
 		<div class="container">
 			<h2>ABOUT ME</h2>
 
-
-			<div class="row info">
-				<div class="col-md-8">
-					<p>
-						I'm a junior full stack web developer, currently studying at Access Code School. Always up for new challenges, i'm a hard worker and avid learner. Code is my passion and I'm willing to work hard for my knowledge to grow and my skills to become more efficients.<br>
-						I'm currently seeking opportunities to apply my knowledge, practice my skills and gain work experience.<br>
-						On a side note, I also like to travel, watch movies, play boardgames and cats...
-						<span class="signature">.Dorothée Viard</span>
+			{% for about in abouts %}
+				<div class="row info">
+					<div class="col-md-8">
+						<p>
+							{{ about.text | raw }}
+							<span class="signature">.Dorothée Viard</span>
+						</p>
 					</div>
 
 					<div class="col-md-4">
-						<img src="{{ asset('build/images/hi.png')}}" alt="Dorothee Viard" class="img-fluid rounded-circle">
+						<img src="{{ asset('upload/') }}{{ about.image }}" alt="Dorothee Viard" class="img-fluid rounded-circle">
 					</div>
 				</div>
-			</div>
-			<button class="btn-cv">GRAB MY RESUME</button>
-
-
-		</section>
-
-		<section class="mydiv" id="skills">
-			<h2>I DO</h2>
-			{% for skill in skills %}
-				<img src="" alt="">
 			{% endfor %}
-		</section>
-		
-		<section class="mydiv" id="projects">
-			<h2>PORTFOLIO</h2>
-			<ul>
-				{% for project in projects %}
-					<li><a href="{{ path('show-project', {'id': project.id}) }}">{{ project.name }}</a></li>
+			<button class="btn-cv">GRAB MY RESUME</button>
+		</div>
+
+	</section>
+
+	<section class="mydiv" id="skills">
+		<h2>I DO</h2>
+
+			<div class="icon-container container">
+				{% for skill in skills %}
+					<img src="{{ asset('upload/') }}{{ skill.image }}" alt="">
 				{% endfor %}
-			</ul>
-		</section>
-
-		<section class="mydiv" id="resume-front">
-			<img src="{{ asset('build/images/logoport.png')}}" alt="">
-		</section>
-		<section class="mydiv" id="contact">
-			<h2>GET IN TOUCH</h2>
-			{% include 'flash_messages.html.twig' %}
-			<div id="form">
-
-				<form id="full" name="message" method="post" autocomplete="off">
-
-					<label for="message_email">EMAIL
-						<input type="email" id="message_email" name="message[email]" required="required" />
-					</label>
-
-					<label for="message_message" class="">MESSAGE
-						<textarea id="message_message" name="message[message]" required="required"></textarea>
-					</label>
-
-
-					<button class="btn-send">Send</button>
-
-				</form>
+				
 			</div>
 
-			<div class="icon-bottom">
-				<a href="https://github.com/Do0oV" target="_blank"><img class="git-bottom" src="{{ asset('build/images/github.svg')}}" alt=""></a>
-				<a href=""><img class="none-bottom" src="{{ asset('build/images/linkedin.svg')}}" alt=""></a>
-				<a href="https://www.linkedin.com/in/dorotheeviard/" target="_blank" ><img class="link-bottom" src="{{ asset('build/images/linkedin.svg')}}" alt=""></a>
-			</div>
-		</section>
+	</section>
+
+	<section class="mydiv" id="projects">
+		<h2>PORTFOLIO</h2>
+		<ul>
+			{% for project in projects %}
+				<li><a href="{{ path('show-project', {'id': project.id}) }}">{{ project.name }}</a></li>
+			{% endfor %}
+		</ul>
+	</section>
+
+	<section class="mydiv" id="resume-front">
+		<img src="{{ asset('build/images/logoport.png')}}" alt="">
+	</section>
+	<section class="mydiv" id="contact">
+		<h2>GET IN TOUCH</h2>
+		{% include 'flash_messages.html.twig' %}
+		<div id="form">
+
+			<form id="full" name="message" method="post" autocomplete="off">
+
+				<label for="message_email">EMAIL
+					<input type="email" id="message_email" name="message[email]" required="required" />
+				</label>
+
+				<label for="message_message" class="">MESSAGE
+					<textarea id="message_message" name="message[message]" required="required"></textarea>
+				</label>
+
+
+				<button class="btn-send">Send</button>
+
+			</form>
+		</div>
+
+		<div class="icon-bottom">
+			<a href="https://github.com/Do0oV" target="_blank"><img class="git-bottom" src="{{ asset('build/images/github.svg')}}" alt=""></a>
+			<a href=""><img class="none-bottom" src="{{ asset('build/images/linkedin.svg')}}" alt=""></a>
+			<a href="https://www.linkedin.com/in/dorotheeviard/" target="_blank" ><img class="link-bottom" src="{{ asset('build/images/linkedin.svg')}}" alt=""></a>
+		</div>
+	</section>
 
 
 
-	{% endblock %}
+{% endblock %}

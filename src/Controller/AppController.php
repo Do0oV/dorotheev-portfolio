@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Form\MessageType;
 use App\Entity\Skills;
+use App\Entity\About;
 use App\Entity\Projects;
 use App\Entity\Resume;
 use App\Entity\Message;
@@ -26,6 +27,7 @@ class AppController extends Controller
         $skills = $this->getDoctrine()->getRepository(Skills::class);
         $resumes = $this->getDoctrine()->getRepository(Resume::class);
         $projects = $this->getDoctrine()->getRepository(Projects::class);
+        $about = $this->getDoctrine()->getRepository(About::class);
 
         $form = $this->createForm(MessageType::class, $message);
         $form->handleRequest($request);
@@ -75,6 +77,7 @@ class AppController extends Controller
             'skills' => $skills->findAll(),
             'resumes' => $resumes->findAll(),
             'projects' => $projects->findByDisplay(true),
+            'abouts' => $about->findAll(),
             'form' => $form->createView()
         ]);
     }
