@@ -15,7 +15,6 @@
 					<a href="#aboutMe">About me</a>
 					<a href="#projects">Projects</a>
 					<a href="#skills">Skills</a>
-					<a href="#resume-front">Resume</a>
 					<a href="#contact">Contact</a>
 				</div>
 			</div> 
@@ -72,10 +71,32 @@
 		<h2>I DO</h2>
 
 		<div class="icon-container container">
-			<div class="img-items">
-			{% for skill in skills %}
-				<img src="{{ asset('upload/') }}{{ skill.image }}" alt="">
-			{% endfor %}
+			<div class="img-items ">
+
+				{% for skill in skills %}
+					{% if skill.genre == 'full' %}
+						<img src="{{ asset('upload/') }}{{ skill.image }}" alt="">
+					{% endif %}
+				{% endfor %}
+			</div>
+			<div class="img-items ">
+				{% for skill in skills %}
+					{% if skill.genre == 'back' %}
+						<img src="{{ asset('upload/') }}{{ skill.image }}" alt="">
+					{% endif %}
+				{% endfor %}
+			</div>
+			<div class="img-items-other ">
+				{% for skill in skills %}
+					{% if skill.genre == 'tools' %}
+						<img src="{{ asset('upload/') }}{{ skill.image }}" alt="">
+					{% endif %}
+				{% endfor %}
+				{% for skill in skills %}
+					{% if skill.genre == 'other' %}
+						<img src="{{ asset('upload/') }}{{ skill.image }}" alt="">
+					{% endif %}
+				{% endfor %}
 			</div>
 
 		</div>
@@ -85,44 +106,110 @@
 
 	<section class="mydiv" id="projects">
 		<h2>PORTFOLIO</h2>
-		<ul>
+
+		<div id="portfolio" class="row cover">
+			<div class="container">
+				<div class="row portfolio-projects"> <!-- Two project row-->   
+					<div class="col-lg-6 item"> <!--1st side project -->
+						<div class="row"> 
+							<div class="col-sm-6 text-center">
+								<h3 class="portfolio-projects--title">Stock App</h3>
+								<p class="portfolio-projects--desc">Random quotes shown over google earth images</p>
+								<p class="portfolio-projects--desc">Uses: Javascript, JQuery, Bootstrap</p>
+								<a class="btn btn-rounded portfolio-projects--btn" href="https://sonorangirl.github.io/Earth-Quotes/#" role="button">Demo</a>
+								<a class="btn btn-rounded portfolio-projects--btn" href="https://sonorangirl.github.io/Earth-Quotes/#" role="button">Code</a>
+							</div>
+							<div class="col-sm-6 text-center col-img">
+								<img class="portfolio-projects--image" src="http://dorotheev.promo-19.codeur.online/assets/images/movieslist.png">
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 item"> <!--2nd side project -->
+						<div class="row"> 
+							<div class="col-sm-6 text-center order-sm-2"><!--flipped on small, unflipped on large-->
+								<h3 class="portfolio-projects--title">CryptoMap</h3>
+								<p class="portfolio-projects--desc">A Pomodoro clock timer with a task list integration</p>
+								<p class="portfolio-projects--desc">Uses: Javascript, JQuery, Bootstrap</p>
+								<a class="btn btn-rounded portfolio-projects--btn" href="https://sonorangirl.github.io/Earth-Quotes/#" role="button">Demo</a>
+								<a class="btn btn-rounded portfolio-projects--btn" href="https://sonorangirl.github.io/Earth-Quotes/#" role="button">Code</a>
+							</div>
+							<div class="col-sm-6 text-center col-img order-sm-1"><!--flipped on small, unflipped on large-->
+								<img class="img-rounded portfolio-projects--image" src="http://dorotheev.promo-19.codeur.online/assets/images/movieslist.png">
+							</div>
+						</div>
+					</div>
+				</div><!--end Two project row-->
+
+				<div class="row portfolio-projects"> <!-- Opposite Two project row-->
+					<div class="col-lg-6 item"> <!--1st side project -->
+						<div class="row"> 
+							<div class="col-sm-6 text-center">
+								<h3 class="portfolio-projects--title">Portfolio</h3>
+								<p class="portfolio-projects--desc">A weather app to check current weather conditions.</p>
+								<p class="portfolio-projects--desc">Uses: Javascript, Jquery, APIs</p>
+								<a class="btn btn-rounded portfolio-projects--btn" href="" role="button">Demo</a>
+								<a class="btn btn-rounded portfolio-projects--btn" href="" role="button">Code</a>
+								
+							</div>
+							<div class="col-sm-6 text-center col-img">
+								<img class="img-rounded portfolio-projects--image" src="http://dorotheev.promo-19.codeur.online/assets/images/movieslist.png">
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 item"> <!--2nd side project -->
+						<div class="row"> 
+							<div class="col-sm-6 text-center order-sm-2"><!--flipped on small, unflipped on large-->
+								<h3 class="portfolio-projects--title">Meme Generator</h3>
+								<p class="portfolio-projects--desc">A simple recreation of the 80s game Simon.</p>
+								<p class="portfolio-projects--desc">Uses: Javascript, Sass, JQuery</p>
+								<a class="btn btn-rounded portfolio-projects--btn" href="https://sonorangirl.github.io/Simon-Game/" role="button">Demo</a>
+								<a class="btn btn-rounded portfolio-projects--btn" href="https://sonorangirl.github.io/Task-Timer/" role="button">Code</a>
+								
+							</div>
+							<div class="col-sm-6 text-center col-img order-sm-1"><!--flipped on small, unflipped on large-->
+								<img class="img-rounded portfolio-projects--image" src="http://dorotheev.promo-19.codeur.online/assets/images/movieslist.png">
+							</div>
+						</div>
+					</div>
+				</div><!--end Opposite Two project row-->
+
+			</div>
+		</div>
+	</div><!-- End #Portfolio -->
+{# 
 			{% for project in projects %}
 				<li><a href="{{ path('show-project', {'id': project.id}) }}">{{ project.name }}</a></li>
-			{% endfor %}
-		</ul>
-	</section>
+			{% endfor %} #}
 
-	<section class="mydiv" id="resume-front">
-		<img src="" alt="">
-	</section>
-	<section class="mydiv" id="contact">
-		<h2>GET IN TOUCH</h2>
-		{% include 'flash_messages.html.twig' %}
-		<div id="form">
+		</section>
+		<section class="mydiv" id="contact">
+			<h2>GET IN TOUCH</h2>
+			{% include 'flash_messages.html.twig' %}
+			<div id="form">
 
-			<form id="full" name="message" method="post" autocomplete="off">
+				<form id="full" name="message" method="post" autocomplete="off">
 
-				<label for="message_email">EMAIL
-					<input type="email" id="message_email" name="message[email]" required="required" />
-				</label>
+					<label for="message_email">EMAIL
+						<input type="email" id="message_email" name="message[email]" required="required" />
+					</label>
 
-				<label for="message_message" class="">MESSAGE
-					<textarea id="message_message" name="message[message]" required="required"></textarea>
-				</label>
+					<label for="message_message" class="">MESSAGE
+						<textarea id="message_message" name="message[message]" required="required"></textarea>
+					</label>
 
 
-				<button class="btn-send">Send</button>
+					<button class="btn-send">Send</button>
 
-			</form>
-		</div>
+				</form>
+			</div>
 
-		<div class="icon-bottom">
-			<a href="https://github.com/Do0oV" target="_blank"><img class="git-bottom" src="{{ asset('build/images/github.svg')}}" alt=""></a>
-			<a href=""><img class="none-bottom" src="{{ asset('build/images/linkedin.svg')}}" alt=""></a>
-			<a href="https://www.linkedin.com/in/dorotheeviard/" target="_blank" ><img class="link-bottom" src="{{ asset('build/images/linkedin.svg')}}" alt=""></a>
-		</div>
-	</section>
+			<div class="icon-bottom">
+				<a href="https://github.com/Do0oV" target="_blank"><img class="git-bottom" src="{{ asset('build/images/github.svg')}}" alt=""></a>
+				<a href=""><img class="none-bottom" src="{{ asset('build/images/linkedin.svg')}}" alt=""></a>
+				<a href="https://www.linkedin.com/in/dorotheeviard/" target="_blank" ><img class="link-bottom" src="{{ asset('build/images/linkedin.svg')}}" alt=""></a>
+			</div>
+		</section>
 
 
 
-{% endblock %}
+	{% endblock %}

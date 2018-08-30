@@ -11,6 +11,7 @@
  	align-items: center;
  	justify-content: center;
  	background-color: #4ccbe0;
+ 	height: 100vh;
 
 
  	h2{
@@ -26,6 +27,9 @@
  		bottom: 50px;
  		left: 50%;
  		transform: translateX(-50%);
+ 	}
+ 	img {
+ 		background: white;
  	}
  }
 
@@ -146,13 +150,9 @@
 
 
  	#aboutMe{
- 		height: 130vh;
+ 		height: 150vh;
  		img{
- 			position: absolute;
- 			top: 0;
- 			bottom: 0;
- 			right:0;
- 			margin: auto;
+
  		}
  		.info p {
  			margin-top: 20px;

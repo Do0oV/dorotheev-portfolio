@@ -1,49 +1,106 @@
 #skills {
- 	position: relative;
- 	background-color: #21a8bf;
- 	display:flex;
- 	align-items: center;
- 	justify-content: space-between;
- 	h2{
- 		position: absolute;
- 		top:50px;
- 		left: 50%;
- 		transform: translateX(-50%);
- 		color: white;
- 	}
- 	img{
- 		width: 100px;
- 		align-self:flex-start;
- 		margin-top: 100px;
- 		margin-right: 25px;
- 		margin-left: 25px;
- 	}
+	position: relative;
+	background-color: #21a8bf;
+	display:flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 100vh;
+	h2{
+		position: absolute;
+		top:50px;
+		left: 50%;
+		transform: translateX(-50%);
+		color: white;
+	}
+	.img-items img{
+		width: 100px;
+		align-self:flex-start;
+		margin-top: 100px;
+		margin-right: 25px;
+		margin-left: 25px;
 
- }
- .img-items{
- 	display: flex;
- 	justify-content: space-around;
- 	flex-wrap: wrap;
+	}
+	.img-items-other img {
+		width: 70px;
+		align-self:flex-start;
+		margin-top: 50px;
+		margin-right: 15px;
+		margin-left: 15px;
+	}
 
- }
+}
+.shadow {
+	width:125px;
+	height:15px;
+	border-radius:40%;
+	margin:30px auto 0;
+	background-color:rgba(0,0,0,0.05);
+}
+.icon-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 80%;
 
- @media screen and (max-width: 790px) {
- 	#skills img {
- 		width: 80px;
- 	}
- }
 
- @media screen and (max-width: 425px) {
- 	#skills img {
- 		width: 80px;
- 		margin-top: 20px;
- 		margin-right: 15px;
- 		margin-left: 15px;
- 	}
- }
+}
+.img-items, .img-items-other {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	align-items: center;
 
- @media screen and (max-height: 640px) {
- 	#skills img {
- 		width: 80px;
- 	}
- }
+}
+
+.img-items-other {
+	margin-top: 10%;
+}
+
+@media screen and (max-width: 790px) {
+	#skills .img-items img {
+		width: 80px;
+		margin-top: 30px;
+
+	}
+	#skills .img-items-other img {
+		width: 60px;
+		margin-top: 30px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.img-items-other {
+		margin-top: 0px;
+	}
+}
+
+@media screen and (max-width: 425px) {
+	#skills .img-items img {
+		width: 80px;
+		margin-top: 20px;
+		margin-right: 15px;
+		margin-left: 15px;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	#skills {
+		height: 130vh;
+	}
+}
+
+@media screen and (max-height: 640px) {
+	#skills .img-items img {
+		width: 70px;
+		margin-top: 25px;
+		margin-right: 15px;
+		margin-left: 15px;
+	}
+	#skills .img-items-other img {
+		width: 50px;
+		margin-top: 20px;
+		margin-right: 15px;
+		margin-left: 15px;
+	}
+}

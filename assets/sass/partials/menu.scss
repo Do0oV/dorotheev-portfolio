@@ -66,11 +66,11 @@ $hamsizemultiplier: 2;
   position: fixed;
   top: 0;
   left: 0;
-	height: 100vh;
-	width: 100%;
-	z-index: 1;
-	background-color: rgba(0,0,0, 0.9);
-	overflow-x: hidden;
+  height: 100vh;
+  width: 100%;
+  z-index: 1;
+  background-color: rgba(0,0,0, 0.9);
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -97,15 +97,21 @@ $hamsizemultiplier: 2;
 @media screen and (max-width: 450px), screen and (max-height: 450px) {
   .hamburger{
     width: $hambasewidth * 1;
-      span{
-        height: 1px * $hamsizemultiplier;
-          &:nth-child(2) {
-            margin-top: 4px * $hamsizemultiplier;
-            margin-right: 0px;
-          }
-          &:nth-child(3) {
-            margin-top: 8px * $hamsizemultiplier;
-          }
+    span{
+      height: 1px * $hamsizemultiplier;
+      &:nth-child(2) {
+        margin-top: 4px * $hamsizemultiplier;
+        margin-right: 0px;
       }
+      &:nth-child(3) {
+        margin-top: 8px * $hamsizemultiplier;
+      }
+    }
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .overlay a {
+    font-size: 26px;
   }
 }
