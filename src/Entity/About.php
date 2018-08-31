@@ -26,6 +26,11 @@ class About
      */
     private $image;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $resume;
+
     public function getId()
     {
         return $this->id;
@@ -52,6 +57,19 @@ class About
     {
         if($image !== null) {
             $this->image = $image;
+        }  
+        return $this;       
+    }
+
+    public function getResume()
+    {
+        return $this->resume;
+    }
+
+    public function setResume( $resume): self
+    {
+        if($resume !== null) {
+            $this->resume = $resume;
         }  
         return $this;       
     }

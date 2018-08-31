@@ -6,7 +6,7 @@
 		<div class="edit container">
 			<h2>Edit Project</h2>
 			<a href="{{ path('admin') }}"><button class="btn btn-primary btn-sm">BACK</button></a>
-
+			<img src="{{ asset('upload/') }}{{ project.image }}" alt="alt image" style="width:200px;height:auto;">
 			{{ form_start(form) }}
 
 			{{ form_errors(form) }}

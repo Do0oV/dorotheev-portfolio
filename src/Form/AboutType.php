@@ -23,7 +23,12 @@ class AboutType extends AbstractType
                 ]
             ])
             ->add('image', FileType::class, [
-                'label' => ' ',
+                'label' => 'Image',
+                'data_class' => null,
+                'required' => true,
+            ])
+            ->add('resume', FileType::class, [
+                'label' => 'Resume',
                 'data_class' => null,
                 'required' => true,
             ])
@@ -36,13 +41,23 @@ class AboutType extends AbstractType
                 // This should be considered a new "about"
                 if (!$about || null === $about->getId()) {
                     $form->add('image', FileType::class, [
-                        'label' => ' ',
+                        'label' => 'Image',
+                        'data_class' => null,
+                        'required' => true,
+                    ]);
+                    $form->add('resume', FileType::class, [
+                        'label' => 'Resume',
                         'data_class' => null,
                         'required' => true,
                     ]);
                 } else {
                     $form->add('image', FileType::class, [
-                        'label' => ' ',
+                        'label' => 'Image',
+                        'data_class' => null,
+                        'required' => false,
+                    ]);
+                    $form->add('resume', FileType::class, [
+                        'label' => 'Resume',
                         'data_class' => null,
                         'required' => false,
                     ]);

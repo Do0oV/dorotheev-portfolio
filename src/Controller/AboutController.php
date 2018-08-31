@@ -37,8 +37,13 @@ class AboutController extends Controller
             $file = $about->getImage();
             $fileName = md5(uniqid()).'.'.$file->guessExtension();
             $file->move($this->getParameter('upload_directory'), $fileName);
-
             $about->setImage($fileName);
+
+            $cv = $about->getResume();
+            $fileName = md5(uniqid()).'.pdf';
+            $cv->move($this->getParameter('upload_directory'), $fileName);
+            $about->setResume($fileName);
+            
             $em = $this->getDoctrine()->getManager();
             $em->persist($about);
             $em->flush();
@@ -74,8 +79,6 @@ class AboutController extends Controller
             //file upload is required=false in edit so if the field is not null we process the change
             if ( $form["image"]->getData() !=  null) {
 
-
-
                 $file = $form["image"]->getData();
                 $fileName = md5(uniqid()).'.'.$file->guessExtension();
                 $file->move($this->getParameter('upload_directory'), $fileName);
@@ -95,6 +98,31 @@ class AboutController extends Controller
                //delete the image
                 if (file_exists($path.'/'.$oldImage)) {
                  unlink($path.'/'.$oldImage);
+             }
+         }
+
+            //file upload is required=false in edit so if the field is not null we process the change
+            if ( $form["resume"]->getData() !=  null) {
+
+                $file = $form["resume"]->getData();
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                $file->move($this->getParameter('upload_directory'), $fileName);
+
+                $about->setResume($fileName);
+
+                   //Recover previous image in order to delete it
+                $uow = $em->getUnitOfWork();
+                $uow->computeChangeSets();
+
+                   // return an array of the changes made in entity
+                $changeset = $uow->getEntityChangeSet($about);
+                   //var_dump($changeset); die();
+                $oldResume = $changeset["resume"][0];
+                $path= $this->getParameter('upload_directory');
+
+               //delete the image
+                if (file_exists($path.'/'.$oldResume)) {
+                 unlink($path.'/'.$oldResume);
              }
          }
 
@@ -124,6 +152,12 @@ class AboutController extends Controller
             if (file_exists($path.'/'.$about->getImage())) {
                unlink($path.'/'.$about->getImage());
            }
+            //delete the resume from folder
+            $path= $this->getParameter('upload_directory');
+            if (file_exists($path.'/'.$about->getResume())) {
+               unlink($path.'/'.$about->getResume());
+           }
+
 
            $em->remove($about);
            $em->flush();

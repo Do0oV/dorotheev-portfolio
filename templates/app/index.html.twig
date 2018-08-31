@@ -28,9 +28,9 @@
 				<h2 class="">Web Developer</h2>
 			</div>
 			<div class="social">
-				<a href="https://github.com/Do0oV" target="_blank"><img class="git" src="{{ asset('build/images/github.svg')}}" alt=""></a>
+				<a href="https://github.com/Do0oV" target="_blank"><img class="git" src="{{ asset('build/images/github.svg')}}" alt="github link"></a>
 				<a href="#contact"><img  class="email" src="{{ asset('build/images/email.svg')}}" alt=""></a>
-				<a href="https://www.linkedin.com/in/dorotheeviard/" target="_blank"><img class="link" src="{{ asset('build/images/linkedin.svg')}}" alt=""></a>
+				<a href="https://www.linkedin.com/in/dorotheeviard/" target="_blank"><img class="link" src="{{ asset('build/images/linkedin.svg')}}" alt="linkedin link"></a>
 
 			</div>
 {# 			<div class="scroll-icon">
@@ -61,8 +61,9 @@
 						<img src="{{ asset('upload/') }}{{ about.image }}" alt="Dorothee Viard" class="img-fluid rounded-circle">
 					</div>
 				</div>
+				<a href="{{ asset('upload/') }}{{ about.resume }}" target="_blank"><button class="btn-cv">GRAB MY RESUME</button></a>
 			{% endfor %}
-			<button class="btn-cv">GRAB MY RESUME</button>
+
 		</div>
 
 	</section>
@@ -75,26 +76,26 @@
 
 				{% for skill in skills %}
 					{% if skill.genre == 'full' %}
-						<img src="{{ asset('upload/') }}{{ skill.image }}" alt="">
+						<img src="{{ asset('upload/') }}{{ skill.image }}" alt="{{ skill.name }} logo">
 					{% endif %}
 				{% endfor %}
 			</div>
 			<div class="img-items ">
 				{% for skill in skills %}
 					{% if skill.genre == 'back' %}
-						<img src="{{ asset('upload/') }}{{ skill.image }}" alt="">
+						<img src="{{ asset('upload/') }}{{ skill.image }}" alt="{{ skill.name }} logo">
 					{% endif %}
 				{% endfor %}
 			</div>
 			<div class="img-items-other ">
 				{% for skill in skills %}
 					{% if skill.genre == 'tools' %}
-						<img src="{{ asset('upload/') }}{{ skill.image }}" alt="">
+						<img src="{{ asset('upload/') }}{{ skill.image }}" alt="{{ skill.name }} logo">
 					{% endif %}
 				{% endfor %}
 				{% for skill in skills %}
 					{% if skill.genre == 'other' %}
-						<img src="{{ asset('upload/') }}{{ skill.image }}" alt="">
+						<img src="{{ asset('upload/') }}{{ skill.image }}" alt="{{ skill.name }} logo">
 					{% endif %}
 				{% endfor %}
 			</div>
@@ -112,7 +113,7 @@
 				<div class="row portfolio-projects"> <!-- Two project row-->   
 					<div class="col-lg-6 item"> <!--1st side project -->
 						<div class="row"> 
-							<div class="col-sm-6 text-center">
+							<div class="col-sm-6 text-center col-desc">
 								<h3 class="portfolio-projects--title">Stock App</h3>
 								<p class="portfolio-projects--desc">Random quotes shown over google earth images</p>
 								<p class="portfolio-projects--desc">Uses: Javascript, JQuery, Bootstrap</p>
@@ -126,14 +127,14 @@
 					</div>
 					<div class="col-lg-6 item"> <!--2nd side project -->
 						<div class="row"> 
-							<div class="col-sm-6 text-center order-sm-2"><!--flipped on small, unflipped on large-->
+							<div class="col-sm-6 text-center col-desc"><!--flipped on small, unflipped on large-->
 								<h3 class="portfolio-projects--title">CryptoMap</h3>
 								<p class="portfolio-projects--desc">A Pomodoro clock timer with a task list integration</p>
 								<p class="portfolio-projects--desc">Uses: Javascript, JQuery, Bootstrap</p>
 								<a class="btn btn-rounded portfolio-projects--btn" href="https://sonorangirl.github.io/Earth-Quotes/#" role="button">Demo</a>
 								<a class="btn btn-rounded portfolio-projects--btn" href="https://sonorangirl.github.io/Earth-Quotes/#" role="button">Code</a>
 							</div>
-							<div class="col-sm-6 text-center col-img order-sm-1"><!--flipped on small, unflipped on large-->
+							<div class="col-sm-6 text-center col-img"><!--flipped on small, unflipped on large-->
 								<img class="img-rounded portfolio-projects--image" src="http://dorotheev.promo-19.codeur.online/assets/images/movieslist.png">
 							</div>
 						</div>
@@ -143,7 +144,7 @@
 				<div class="row portfolio-projects"> <!-- Opposite Two project row-->
 					<div class="col-lg-6 item"> <!--1st side project -->
 						<div class="row"> 
-							<div class="col-sm-6 text-center">
+							<div class="col-sm-6 text-center col-desc">
 								<h3 class="portfolio-projects--title">Portfolio</h3>
 								<p class="portfolio-projects--desc">A weather app to check current weather conditions.</p>
 								<p class="portfolio-projects--desc">Uses: Javascript, Jquery, APIs</p>
@@ -158,7 +159,7 @@
 					</div>
 					<div class="col-lg-6 item"> <!--2nd side project -->
 						<div class="row"> 
-							<div class="col-sm-6 text-center order-sm-2"><!--flipped on small, unflipped on large-->
+							<div class="col-sm-6 text-center col-desc"><!--flipped on small, unflipped on large-->
 								<h3 class="portfolio-projects--title">Meme Generator</h3>
 								<p class="portfolio-projects--desc">A simple recreation of the 80s game Simon.</p>
 								<p class="portfolio-projects--desc">Uses: Javascript, Sass, JQuery</p>
@@ -166,7 +167,7 @@
 								<a class="btn btn-rounded portfolio-projects--btn" href="https://sonorangirl.github.io/Task-Timer/" role="button">Code</a>
 								
 							</div>
-							<div class="col-sm-6 text-center col-img order-sm-1"><!--flipped on small, unflipped on large-->
+							<div class="col-sm-6 text-center col-img"><!--flipped on small, unflipped on large-->
 								<img class="img-rounded portfolio-projects--image" src="http://dorotheev.promo-19.codeur.online/assets/images/movieslist.png">
 							</div>
 						</div>
@@ -174,6 +175,10 @@
 				</div><!--end Opposite Two project row-->
 
 			</div>
+		</div>
+		<div class="more">
+		<button class="btn-more">Show more</button>
+			
 		</div>
 
 {# 

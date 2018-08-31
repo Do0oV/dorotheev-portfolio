@@ -46,7 +46,7 @@
                             {{ project.name }}
                         </div>
                         <div class="cell" data-title="Image">
-                            {{ project.image }}
+                            <img src="{{ asset('upload/') }}{{ project.image }}" alt="alt image" style="width:60px;height:auto;">
                         </div>
                         <div class="cell" data-title="Content">
                             {{ project.content }}

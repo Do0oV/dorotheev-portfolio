@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/projects")
  */
-class ProjectsController extends Controller
+class ProjectsController extends Controller 
 {
     /**
      * @Route("/", name="projects_index", methods="GET")
@@ -33,6 +33,14 @@ class ProjectsController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+
+            $file = $project->getImage();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $file->move($this->getParameter('upload_directory'), $fileName);
+
+            $project->setImage($fileName);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
             $em->flush();
@@ -55,16 +63,43 @@ class ProjectsController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin');
-        }
+            //file upload is required=false in edit so if the field is not null we process the change
+            if ( $form["image"]->getData() !=  null) {
 
-        return $this->render('projects/edit.html.twig', [
-            'project' => $project,
-            'form' => $form->createView(),
-        ]);
-    }
+
+                $file = $form["image"]->getData();
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                $file->move($this->getParameter('upload_directory'), $fileName);
+
+                $project->setImage($fileName);
+
+                //Recover previous image in order to delete it
+                $uow = $em->getUnitOfWork();
+                $uow->computeChangeSets();
+
+                   // return an array of the changes made in entity
+                $changeset = $uow->getEntityChangeSet($project);
+                   //var_dump($changeset); die();
+                $oldImage = $changeset["image"][0];
+                $path= $this->getParameter('upload_directory');
+
+               //delete the image
+                if (file_exists($path.'/'.$oldImage)) {
+                 unlink($path.'/'.$oldImage);
+             }
+         }
+
+         $this->getDoctrine()->getManager()->flush();
+
+         return $this->redirectToRoute('admin');
+     }
+
+     return $this->render('projects/edit.html.twig', [
+        'project' => $project,
+        'form' => $form->createView(),
+    ]);
+ }
 
     /**
      * @Route("/{id}", name="projects_delete", methods="DELETE")
@@ -73,10 +108,17 @@ class ProjectsController extends Controller
     {
         if ($this->isCsrfTokenValid('delete'.$project->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($project);
-            $em->flush();
-        }
 
-        return $this->redirectToRoute('admin');
-    }
+            //delete the image from folder
+            $path= $this->getParameter('upload_directory');
+            if (file_exists($path.'/'.$project->getImage())) {
+                unlink($path.'/'.$project->getImage());
+         }
+
+         $em->remove($project);
+         $em->flush();
+     }
+
+     return $this->redirectToRoute('admin');
+ }
 }

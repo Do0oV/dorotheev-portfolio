@@ -3,12 +3,9 @@
 namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use App\Repository\MessageRepository;
-use App\Repository\ProjectsRepository;
-use App\Repository\ResumeRepository;
-use App\Repository\SkillsRepository;
-use App\Repository\AboutRepository;
 use App\Entity\Skills;
 use App\Entity\Projects;
 use App\Entity\Resume;
@@ -21,15 +18,21 @@ class AdminController extends Controller
     /**
      * @Route("/admin", name="admin")
      */
-    public function index(MessageRepository $messageRepository, ProjectsRepository $projectsRepository, ResumeRepository $resumeRepository, SkillsRepository $skillsRepository, AboutRepository $aboutRepository)
+    public function index(Request $request)
     {
 
-    	return $this->render('admin/index.html.twig', [
-            'messages' => $messageRepository->findAll(),
-            'projects' => $projectsRepository->findAll(),
-            'resumes' => $resumeRepository->findAll(),
-            'skills' => $skillsRepository->findAll(),
-            'abouts' => $aboutRepository->findAll()
+        $skill = $this->getDoctrine()->getRepository(Skills::class);
+        $resume = $this->getDoctrine()->getRepository(Resume::class);
+        $project = $this->getDoctrine()->getRepository(Projects::class);
+        $about = $this->getDoctrine()->getRepository(About::class);
+        $message = $this->getDoctrine()->getRepository(Message::class);
+
+        return $this->render('admin/index.html.twig', [
+            'messages' => $message->findAll(),
+            'projects' => $project->findAll(),
+            'resumes' => $resume->findAll(),
+            'skills' => $skill->findAll(),
+            'abouts' => $about->findAll()
 
         ]);
     }
