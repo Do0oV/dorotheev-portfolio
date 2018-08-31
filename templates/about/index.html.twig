@@ -14,41 +14,46 @@
                 Text
             </div>
             <div class="cell">
+                CV
+            </div>
+            <div class="cell">
                 Actions
             </div>
         </div>
 
         {% for about in abouts %}
-
             <div class="row" >
                 <div class="cell" data-title="Id">
                     {{ about.id }}
                 </div>
                 <div class="cell" data-title="Image">
                    <img src="{{ asset('upload/') }}{{ about.image }}" alt="alt image" style="width:60px;height:auto;">
-                </div>
-                <div class="cell" data-title="Id">
-                    {{ about.text }}
-                </div>
-                <div class="cell" data-title="action">
-
-                    {{ include('about/_delete_form.html.twig') }}
-                    <a href="{{ path('about_edit', {'id': about.id}) }}"><button class="btn btn-secondary btn-sm">EDIT</button></a>
-                </div>
+               </div>
+               <div class="cell" data-title="Id">
+                {{ about.text }}
             </div>
-
-        {% else %}
-
-            <div class="row" >
-                <div class="cell" data-title="Id">
-                    no records found
-                </div>
+            <div class="cell" data-title="Id">
+                {{ about.resume }}
             </div>
+            <div class="cell" data-title="action">
 
-        {% endfor %}
-
-        <div class="">
-            <a href="{{ path('about_new') }}"><button class="btn btn-success" style="width:100%">ADD</button></a>
+                {{ include('about/_delete_form.html.twig') }}
+                <a href="{{ path('about_edit', {'id': about.id}) }}"><button class="btn btn-secondary btn-sm">EDIT</button></a>
+            </div>
         </div>
+
+    {% else %}
+
+        <div class="row" >
+            <div class="cell" data-title="Id">
+                no records found
+            </div>
+        </div>
+
+    {% endfor %}
+
+    <div class="">
+        <a href="{{ path('about_new') }}"><button class="btn btn-success" style="width:100%">ADD</button></a>
     </div>
+</div>
 {% endblock %}

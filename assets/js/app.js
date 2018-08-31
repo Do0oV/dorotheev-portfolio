@@ -55,20 +55,10 @@ $(function() {
 	});
 
 
-	//$('.col-desc:eq(1)').css("background", 'white');
 	$('.col-desc:eq(1)').addClass('order-sm-2');
 	$('.col-desc:eq(3)').addClass('order-sm-2');
-
-	//$('.col-desc:eq(3)').css("background", 'white');
-
-	//$('.col-img:eq(1)').css("background", 'white');
 	$('.col-desc:eq(1)').addClass('order-sm-1');
 	$('.col-desc:eq(3)').addClass('order-sm-1');
-
-	//$('.col-img:eq(3)').css("background", 'white');
-
-	console.log('$(".portfolio-projects .item .row :nth-child(2)")');
-
 
 })
 

@@ -40,7 +40,7 @@ class AppController extends Controller
             $em->flush();
             $now = new \DateTime();
 
-            $mail = (new \Swift_Message('Hello Email'))
+            $mail = (new \Swift_Message('New contact message'))
             ->setFrom('send@example.com')
             ->setTo('dorothee.v@codeur.online')
             ->setBody(
@@ -60,7 +60,7 @@ class AppController extends Controller
                         'message' => $message
                     ]
                 ),
-                'text/html'
+                'text/plain'
             );
 
             // send the mail 

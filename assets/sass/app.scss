@@ -43,7 +43,8 @@ button {
 	top: 0px; 
 	left: 0px; 
 	width: 100%;
-	z-index:9999; 
+	z-index:9999;
+	text-align: center;
 }
 
 #resume-front {
@@ -80,17 +81,17 @@ button {
 }
 
 // @media (min-width: 768px) {
-// 	.pull-right-sm {
-// 		float: right !important; 
-// 	}
-// }
-// @media (min-width: 992px) {
-// 	.pull-right-md {
-// 		float: right !important; 
-// 	}
-// }
-// @media (min-width: 1200px) {
-// 	.pull-right-lg {
-// 		float: right !important; 
-// 	}
-// }
+	// 	.pull-right-sm {
+		// 		float: right !important; 
+		// 	}
+		// }
+		// @media (min-width: 992px) {
+			// 	.pull-right-md {
+				// 		float: right !important; 
+				// 	}
+				// }
+				// @media (min-width: 1200px) {
+					// 	.pull-right-lg {
+						// 		float: right !important; 
+						// 	}
+						// }
