@@ -56,6 +56,16 @@ class Projects
      */
     private $display;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $linkGit;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $linkDemo;
+
     public function getId()
     {
         return $this->id;
@@ -155,6 +165,30 @@ class Projects
     public function setDisplay(bool $display): self
     {
         $this->display = $display;
+
+        return $this;
+    }
+
+    public function getLinkGit(): ?string
+    {
+        return $this->linkGit;
+    }
+
+    public function setLinkGit(?string $linkGit): self
+    {
+        $this->linkGit = $linkGit;
+
+        return $this;
+    }
+
+    public function getLinkDemo(): ?string
+    {
+        return $this->linkDemo;
+    }
+
+    public function setLinkDemo(?string $linkDemo): self
+    {
+        $this->linkDemo = $linkDemo;
 
         return $this;
     }

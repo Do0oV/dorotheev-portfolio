@@ -39,14 +39,15 @@
 	height: 50px;
 	width: 100%;
 	bottom: 5vh;
+
 }
 .social img{
 	width: 5vh;
 	height: auto;
+	transition: all .2s ease-in-out;
 }
 .git:hover, .email:hover, .link:hover{
 	transform: scale(1.2);
-
 }
 
 @media screen and (max-height: 700px) {

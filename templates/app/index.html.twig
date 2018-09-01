@@ -13,8 +13,8 @@
 				<div class="overlay-content">
 					<a href="#header">Home</a>
 					<a href="#aboutMe">About me</a>
-					<a href="#projects">Projects</a>
 					<a href="#skills">Skills</a>
+					<a href="#projects">Projects</a>
 					<a href="#contact">Contact</a>
 				</div>
 			</div> 
@@ -118,17 +118,67 @@
 									<h3 class="portfolio-projects--title">{{ project.name }}</h3>
 									<p class="portfolio-projects--desc">{{ project.content }}</p>
 									<p class="portfolio-projects--desc">{{ project.techno }}</p>
-									<a class="btn btn-rounded portfolio-projects--btn" href="{{ project.live }}">Demo</a>
-									<a class="btn btn-rounded portfolio-projects--btn" href="{{ project.github }}" role="button">Code</a>
+									{% if project.live != '#' %}
+										<a class="btn btn-rounded portfolio-projects--btn" href="{{ project.live }}" target="_blank">Demo</a>
+									{% endif %}
+									{% if project.live == '#' %}
+										<p class="btn btn-rounded portfolio-projects--btn" data-toggle="tooltip" data-placement="top" title="Not available :( ">Demo</p>
+									{% endif %}
+									{% if project.github != '#' %}
+										<a class="btn btn-rounded portfolio-projects--btn" href="{{ project.github }}" target="_blank" role="button">Code</a>
+									{% endif %}
+									{% if project.github == '#' %}
+										<p class="btn btn-rounded portfolio-projects--btn" data-toggle="tooltip" data-placement="top" title="Not available :( ">Code</p>
+									{% endif %}
 								</div>
 								<div class="col-sm-6 text-center col-img">
-									<img class="portfolio-projects--image" src="{{ asset('upload/') }}{{ project.image }}" alt="{{ project.name }} image">
+									<img class="portfolio-projects--image" src="{{ asset('upload/') }}{{ project.image }}" alt="{{ project.name }} image" data-text="{{ project.content }}">
+								</div>
+
+							</div>
+						</div>
+					{% endfor %}
+					{% for more_project in more_projects %}
+						<div class="col-lg-6 item"> <!--1st side project -->
+							<div class="row show-more"> 
+								<div class="col-sm-6 text-center col-desc">
+									<h3 class="portfolio-projects--title">{{ more_project.name }}</h3>
+									<p class="portfolio-projects--desc">{{ more_project.content }}</p>
+									<p class="portfolio-projects--desc">{{ more_project.techno }}</p>
+									{% if more_project.live != '#' %}
+										<a class="btn btn-rounded portfolio-projects--btn" href="{{ more_project.live }}" target="_blank">Demo</a>
+									{% endif %}
+									{% if more_project.live == '#' %}
+										<p class="btn btn-rounded portfolio-projects--btn" data-toggle="tooltip" data-placement="top" title="Not available :( ">Demo</p>
+									{% endif %}
+									{% if more_project.github != '#' %}
+										<a class="btn btn-rounded portfolio-projects--btn" href="{{ more_project.github }}" target="_blank" role="button">Code</a>
+									{% endif %}
+									{% if more_project.github == '#' %}
+										<p class="btn btn-rounded portfolio-projects--btn" data-toggle="tooltip" data-placement="top" title="Not available :( ">Github</p>
+									{% endif %}
+								</div>
+								<div class="col-sm-6 text-center col-img">
+									<img class="portfolio-projects--image" src="{{ asset('upload/') }}{{ more_project.image }}" alt="{{ more_project.name }} image" data-text="{{ more_project.content }} {{ more_project.content }} {{ more_project.content }} {{ more_project.content }} {{ more_project.content }} {{ more_project.content }} {{ more_project.content }}">
 								</div>
 							</div>
 						</div>
 					{% endfor %}
 				</div><!--end Opposite Two project row--> 
+				<!-- The Modal -->
+				<div id="myModal" class="modal">
 
+					<!-- The Close Button -->
+					<span class="close">&times;</span>
+
+					<!-- Modal Content (The Image) -->
+					<img class="modal-content" id="img01">
+
+					<!-- Modal Caption (Image Text) -->
+					<div id="caption"></div>
+					<div id="caption1"><p></p></div>
+
+				</div>
 			</div>
 		</div>
 		<div class="more">
@@ -165,7 +215,4 @@
 			<a href="https://www.linkedin.com/in/dorotheeviard/" target="_blank" ><img class="link-bottom" src="{{ asset('build/images/linkedin.svg')}}" alt=""></a>
 		</div>
 	</section>
-
-
-
 {% endblock %}

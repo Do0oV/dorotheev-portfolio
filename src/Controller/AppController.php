@@ -77,6 +77,7 @@ class AppController extends Controller
             'skills' => $skills->findAll(),
             'resumes' => $resumes->findAll(),
             'projects' => $projects->findByDisplay(true),
+            'more_projects' => $projects->findByDisplay(false),
             'abouts' => $about->findAll(),
             'form' => $form->createView()
         ]);

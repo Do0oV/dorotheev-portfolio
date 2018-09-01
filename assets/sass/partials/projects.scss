@@ -76,12 +76,23 @@
 		padding: 3px 23px 3px 23px;
 	}
 }
+p.portfolio-projects--btn:hover {
+	background: white;
+	color: #4ccbe0;
+	border: none;
+	border-radius: 2px;
+	margin-bottom: 1em; 
+	padding: 5px 25px 5px 25px;
+}
 
 .portfolio-projects--image {
 	margin-bottom: 1.875em;
-	padding-top: 5%; 
+	padding-top: 5%;
+	&:hover {
+		cursor: pointer;
+		opacity: 0.5;
+	}
 }
-
 
 @media screen and (max-width: 768px) {
 	.portfolio-projects {

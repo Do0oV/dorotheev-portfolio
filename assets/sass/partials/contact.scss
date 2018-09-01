@@ -24,6 +24,7 @@
 .git-bottom, .link-bottom, .none-bottom{
 	width: 5vh;
 	height: auto;
+	transition: all .2s ease-in-out;
 }
 
 .git-bottom:hover, .link-bottom:hover{
