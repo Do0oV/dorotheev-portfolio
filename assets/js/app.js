@@ -110,7 +110,7 @@ for (var i = 0; i < img.length; i++) {
 }
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+var span = document.getElementsByClassName("_close")[0];
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() { 

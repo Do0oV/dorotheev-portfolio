@@ -137,7 +137,7 @@ button {
 }
 
 /* The Close Button */
-.close {
+._close {
 	position: absolute;
 	top: 15px;
 	right: 35px;
@@ -147,8 +147,8 @@ button {
 	transition: 0.3s;
 }
 
-.close:hover,
-.close:focus {
+._close:hover,
+._close:focus {
 	color: #bbb;
 	text-decoration: none;
 	cursor: pointer;
@@ -159,4 +159,7 @@ button {
 	.modal-content {
 		width: 100%;
 	}
+}
+.rc-anchor-invisible-text {
+	z-index: -555555555 !important;
 }
