@@ -32,7 +32,7 @@ class AppController extends Controller
         $form->handleRequest($request);
         
         
-        $recaptcha = new ReCaptcha('');
+        $recaptcha = new ReCaptcha('my_secret_key');
         $resp = $recaptcha->verify($request->request->get('g-recaptcha-response'), $request->getClientIp());
 
         if ($form->isSubmitted() && $form->isValid() && !$resp->isSuccess()){
