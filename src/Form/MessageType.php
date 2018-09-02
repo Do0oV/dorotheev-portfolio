@@ -18,13 +18,15 @@ class MessageType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => ' ',
+                'label' => ' ',                
+                'required' => true,
                 'attr' => [
                     'placeholder' => 'Your email'
                 ]
             ])
             ->add('message', TextareaType::class, [
-                'label' => ' '
+                'label' => ' ',
+                'required' => true
             ]) 
         ;
     }
