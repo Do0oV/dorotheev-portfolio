@@ -32,11 +32,11 @@ class AppController extends Controller
         $form->handleRequest($request);
         
         
-        $recaptcha = new ReCaptcha('6Lc0xm0UAAAAAAenwJ5YD-CoYBgviYz5gT8idFvp');
+        $recaptcha = new ReCaptcha('secret');
         $resp = $recaptcha->verify($request->request->get('g-recaptcha-response'), $request->getClientIp());
 
         if ($form->isSubmitted() && $form->isValid() && !$resp->isSuccess()){
-            
+
             $this->addFlash('danger', 'Ooops looks like you are a Robot');
         }
 
