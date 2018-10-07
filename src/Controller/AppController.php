@@ -32,8 +32,9 @@ class AppController extends Controller
         $form->handleRequest($request);
         
         
-        $recaptcha = new ReCaptcha('my_secret_key');
+        $recaptcha = new ReCaptcha('6Lc0xm0UAAAAAAenwJ5YD-CoYBgviYz5gT8idFvp');
         $resp = $recaptcha->verify($request->request->get('g-recaptcha-response'), $request->getClientIp());
+
 
         if ($form->isSubmitted() && $form->isValid() && !$resp->isSuccess()){
 
@@ -41,9 +42,7 @@ class AppController extends Controller
         }
 
 
-        if ($form->isSubmitted() && $form->isValid() && $resp->isSuccess()) {
-
-
+        if ($form->isSubmitted() && $form->isValid() ) {
 
             //var_dump($resp);die();
             $message->setIp($request->getClientIp());
@@ -57,8 +56,8 @@ class AppController extends Controller
             ->setTo('dorothee.v@codeur.online')
             ->setBody(
                 $this->renderView(
-                        // templates/emails/registration.html.twig
-                    'emails/registration.html.twig',[
+                        // templates/emails/mailing.html.twig
+                    'emails/mailing.html.twig',[
                         'message' => $message
                     ]
                 ),
@@ -68,7 +67,7 @@ class AppController extends Controller
                  //If you also want to include a plaintext version of the message
             ->addPart(
                 $this->renderView(
-                    'emails/registration.html.twig',[
+                    'emails/mailing.html.twig',[
                         'message' => $message
                     ]
                 ),

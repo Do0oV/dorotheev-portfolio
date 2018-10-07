@@ -117,7 +117,7 @@
 								<div class="col-sm-6 text-center col-desc">
 									<h3 class="portfolio-projects--title">{{ project.name }}</h3>
 									<p class="portfolio-projects--desc">{{ project.content }}</p>
-									<p class="portfolio-projects--desc">{{ project.techno }}</p>
+									<p class="portfolio-projects--desc">{{ project.techno | replace({ (','): (' ') }) }}</p>
 									{% if project.live != '#' %}
 										<a class="btn btn-rounded portfolio-projects--btn" href="{{ project.live }}" target="_blank">Demo</a>
 									{% endif %}
@@ -132,7 +132,7 @@
 									{% endif %}
 								</div>
 								<div class="col-sm-6 text-center col-img">
-									<img class="portfolio-projects--image" src="{{ asset('upload/') }}{{ project.image }}" alt="{{ project.name }} image" data-text="{{ project.content }}">
+									<img class="portfolio-projects--image" src="{{ asset('upload/') }}{{ project.image }}" alt="{{ project.name }} image" data-text="{{ project.content }}" data-tech="{{ project.techno }}">
 								</div>
 
 							</div>
@@ -144,7 +144,7 @@
 								<div class="col-sm-6 text-center col-desc">
 									<h3 class="portfolio-projects--title">{{ more_project.name }}</h3>
 									<p class="portfolio-projects--desc">{{ more_project.content }}</p>
-									<p class="portfolio-projects--desc">{{ more_project.techno }}</p>
+									<p class="portfolio-projects--desc">{{ more_project.techno | replace({ (','): (' ') }) }}</p>
 									{% if more_project.live != '#' %}
 										<a class="btn btn-rounded portfolio-projects--btn" href="{{ more_project.live }}" target="_blank">Demo</a>
 									{% endif %}
@@ -159,7 +159,7 @@
 									{% endif %}
 								</div>
 								<div class="col-sm-6 text-center col-img">
-									<img class="portfolio-projects--image" src="{{ asset('upload/') }}{{ more_project.image }}" alt="{{ more_project.name }} image" data-text="{{ more_project.content }} {{ more_project.content }} {{ more_project.content }} {{ more_project.content }} {{ more_project.content }} {{ more_project.content }} {{ more_project.content }}">
+									<img class="portfolio-projects--image" src="{{ asset('upload/') }}{{ more_project.image }}" alt="{{ more_project.name }} image" data-text="{{ more_project.content }}" data-tech="{{ more_project.techno }}">
 								</div>
 							</div>
 						</div>
@@ -177,6 +177,17 @@
 					<!-- Modal Caption (Image Text) -->
 					<div id="caption"></div>
 					<div id="caption1"><p></p></div>
+
+					<div class="tech" id="technos">
+
+
+					{# 	<img class="picto" src="{{ asset('build/images/materialize-white.png')}}" alt="PB">
+						<img class="picto" src="{{ asset('build/images/materialize-white.png')}}" alt="PB">
+						<img class="picto" src="{{ asset('build/images/materialize-white.png')}}" alt="PB">
+						<img class="picto" src="{{ asset('build/images/materialize-white.png')}}" alt="PB">
+						<img class="picto" src="{{ asset('build/images/materialize-white.png')}}" alt="PB">
+						<img class="picto" src="{{ asset('build/images/materialize-white.png')}}" alt="PB"> #}
+					</div>
 
 				</div>
 			</div>
@@ -204,8 +215,12 @@
 				</label>
 				{# <div class="g-recaptcha" data-sitekey="6Lc0xm0UAAAAAOKqqbxZ7gAbXexHLsES5MV-8pAJ"></div> #}
 
-
-				<button class="g-recaptcha btn-send" data-sitekey="6Lc0xm0UAAAAAOKqqbxZ7gAbXexHLsES5MV-8pAJ" data-callback='onSubmit'>Send</button>
+				<div id='recaptcha' class="g-recaptcha"
+				data-sitekey="6Lc0xm0UAAAAAOKqqbxZ7gAbXexHLsES5MV-8pAJ"
+				data-callback="onCompleted"
+				data-size="invisible"></div>
+				<button class="btn-send" data-toggle="tooltip" data-placement="bottom" title="This form is protected by ReCaptcha">Send</button>
+				{# <button class="g-recaptcha btn-send" data-sitekey="6Lc0xm0UAAAAAOKqqbxZ7gAbXexHLsES5MV-8pAJ" data-callback='onSubmit'>Send</button> #}
 
 			</form>
 		</div>

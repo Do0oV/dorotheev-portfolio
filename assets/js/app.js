@@ -94,10 +94,13 @@ var img = document.querySelectorAll('.portfolio-projects--image');
 var modalImg = document.getElementById("img01");
 var captionText = document.getElementById("caption");
 var captionText1 = document.getElementById("caption1");
+var technos = document.getElementById('technos');
 
 //console.log(content[0]);
 
 for (var i = 0; i < img.length; i++) {
+
+
 	img[i].addEventListener('click', function() {
 		modal.style.display = "block";
 		modalImg.src = this.src;
@@ -105,8 +108,24 @@ for (var i = 0; i < img.length; i++) {
 		
 		captionText.innerHTML = this.alt;
 		captionText1.innerHTML = '<p>'+ this.dataset.text + '</p>';
-		//console.log(i);
+			var tech = this.dataset.tech.split(',');
+		var count = tech.length;
+
+
+		for(let z = 0; z < count; z++){
+			var picto = document.createElement("p");
+			picto.classList.add("tag")
+			//picto.addClass('tag');
+			picto.innerHTML = tech[z];
+			// var picto = document.createElement("IMG");
+			// picto.setAttribute("src", 'build/images/'+ tech[z].toLowerCase()+'.png');
+			 technos.appendChild(picto);
+			console.log(tech[z]);
+		}
+
+
 	});
+
 }
 
 // Get the <span> element that closes the modal
@@ -115,6 +134,7 @@ var span = document.getElementsByClassName("_close")[0];
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() { 
 	modal.style.display = "none";
+	$(technos).empty();
 }
 
 

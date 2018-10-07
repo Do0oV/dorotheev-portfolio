@@ -15,6 +15,9 @@
   <link rel="stylesheet" href="{{ asset('build/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('build/app.css') }}">
   {% block stylesheets %}{% endblock %}
+    <style>
+    .grecaptcha-badge {display: none;}
+    </style>
   </head>
   <body>
 
@@ -33,6 +36,27 @@
       {% block javascripts %}
         <script src="{{ asset('build/app.js') }}"></script>
         <script>
+        $('#full').submit(function(event) {
+          console.log('form submitted.');
+
+          if (!grecaptcha.getResponse()) {
+            console.log('captcha not yet completed.');
+
+            event.preventDefault(); //prevent form submit
+            grecaptcha.execute();
+          } else {
+            console.log('form really submitted.');
+          }
+        });
+
+        onCompleted = function() {
+          console.log('captcha completed.');
+          $('#full').submit();
+          //alert('wait to check for "captcha completed" in the console.');
+        }
+       //  function onSubmit(token) { 
+       //   document.getElementById("full").submit();
+       // }
         // Check that service workers are registered
         if ('serviceWorker' in navigator) {
           // Use the window load event to keep the page load performant
@@ -40,10 +64,8 @@
             navigator.serviceWorker.register("{{ asset('sw1.js') }}");
           });
         }
-        function onSubmit(token) {
-         document.getElementById("full").submit();
-       }
-       </script>
-     {% endblock %}
-   </body>
-   </html>
+        
+        </script>
+      {% endblock %}
+    </body>
+    </html>

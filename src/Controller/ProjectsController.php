@@ -59,8 +59,10 @@ class ProjectsController extends Controller
      */
     public function edit(Request $request, Projects $project): Response
     {
+        $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(ProjectsType::class, $project);
         $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
 

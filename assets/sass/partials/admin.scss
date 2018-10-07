@@ -24,7 +24,7 @@ h3{
   text-align: center;
   color: rgba(255,255,255,0.7);
 }
-@media screen and (max-width: 580px) {
+@media only screen and (max-width: 580px) {
   body {
     font-size: 16px;
     line-height: 22px;
@@ -37,7 +37,7 @@ h3{
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   display: table;
 }
-@media screen and (max-width: 580px) {
+@media only screen and (max-width: 580px) {
   .table {
     display: block;
   }
@@ -108,7 +108,7 @@ form{
 .row.purple{
   background: #af33ad;
 }
-@media screen and (max-width: 580px) {
+@media only screen and (max-width: 580px) {
   .row {
     padding: 14px 0 7px;
     display: block;
@@ -140,7 +140,7 @@ form{
   padding: 6px 12px;
   display: table-cell;
 }
-@media screen and (max-width: 580px) {
+@media only screen and (max-width: 580px) {
   .cell {
     padding: 2px 16px;
     display: block;
