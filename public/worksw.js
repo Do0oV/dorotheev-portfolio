@@ -456,5 +456,6 @@ self.__precacheManifest = [
     "revision": "1f3c1076f05505274853e6ef8bd43e05"
   }
 ].concat(self.__precacheManifest || []);
+//self.__precacheManifest.concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
