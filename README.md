@@ -1,3 +1,3 @@
 # Portfolio
 
-PWA using Symfony and Vue.js
+Symfony App
